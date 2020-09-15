@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyPayment.API", "SkyPayment.API\SkyPayment.API.csproj", "{0772EC75-A27B-427D-878B-95833E9924CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyPayment.Infrastructure", "SkyPayment.Infrastructure\SkyPayment.Infrastructure.csproj", "{179BA51E-5717-4A3E-84C1-223BFFA025F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyPayment.Core", "SkyPayment.Core\SkyPayment.Core.csproj", "{83D9AEEC-4702-4124-B805-CF22CEFD8680}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyPayment.Domain", "SkyPayment.Domain\SkyPayment.Domain.csproj", "{55E54C5D-ADC6-4515-A32E-E9DB676F60B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0772EC75-A27B-427D-878B-95833E9924CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0772EC75-A27B-427D-878B-95833E9924CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0772EC75-A27B-427D-878B-95833E9924CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0772EC75-A27B-427D-878B-95833E9924CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{179BA51E-5717-4A3E-84C1-223BFFA025F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{179BA51E-5717-4A3E-84C1-223BFFA025F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{179BA51E-5717-4A3E-84C1-223BFFA025F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{179BA51E-5717-4A3E-84C1-223BFFA025F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83D9AEEC-4702-4124-B805-CF22CEFD8680}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83D9AEEC-4702-4124-B805-CF22CEFD8680}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83D9AEEC-4702-4124-B805-CF22CEFD8680}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83D9AEEC-4702-4124-B805-CF22CEFD8680}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55E54C5D-ADC6-4515-A32E-E9DB676F60B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55E54C5D-ADC6-4515-A32E-E9DB676F60B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55E54C5D-ADC6-4515-A32E-E9DB676F60B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55E54C5D-ADC6-4515-A32E-E9DB676F60B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
