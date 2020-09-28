@@ -17,11 +17,11 @@ namespace SkyPayment.API.Controllers
             {
                 if (model.Password=="123")
                 {
-                    return Ok();
+                    return Ok("Giriş Başarılı!");
                 }
             }
 
-            return BadRequest();
+            return new StatusCodeResult(418);
         }
     }
 }
