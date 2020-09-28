@@ -10,5 +10,6 @@ namespace SkyPayment.Core.Mongo
         {
             _database = new MongoClient(settings.MongoDbConnectionString).GetDatabase("SkyPaymentDb");
         }
+        
     }
 }
