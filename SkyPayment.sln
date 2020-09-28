@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyPayment.API", "SkyPayment.API\SkyPayment.API.csproj", "{0772EC75-A27B-427D-878B-95833E9924CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyPayment.Management.API", "SkyPayment.Management.API\SkyPayment.Management.API.csproj", "{0772EC75-A27B-427D-878B-95833E9924CB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyPayment.Infrastructure", "SkyPayment.Infrastructure\SkyPayment.Infrastructure.csproj", "{179BA51E-5717-4A3E-84C1-223BFFA025F1}"
 EndProject
@@ -9,6 +9,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyPayment.Domain", "SkyPayment.Domain\SkyPayment.Domain.csproj", "{55E54C5D-ADC6-4515-A32E-E9DB676F60B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyPayment.Contract", "SkyPayment.Contract\SkyPayment.Contract.csproj", "{9C29C58C-D24B-44DA-8D7C-D824DCDB041E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyPayment.Repository", "SkyPayment.Repository\SkyPayment.Repository.csproj", "{039976E0-BA4E-466E-99B8-A1E6CB7B3392}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +38,9 @@ Global
 		{9C29C58C-D24B-44DA-8D7C-D824DCDB041E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C29C58C-D24B-44DA-8D7C-D824DCDB041E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C29C58C-D24B-44DA-8D7C-D824DCDB041E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{039976E0-BA4E-466E-99B8-A1E6CB7B3392}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{039976E0-BA4E-466E-99B8-A1E6CB7B3392}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{039976E0-BA4E-466E-99B8-A1E6CB7B3392}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{039976E0-BA4E-466E-99B8-A1E6CB7B3392}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
