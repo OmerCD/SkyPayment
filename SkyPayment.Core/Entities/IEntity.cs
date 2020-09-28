@@ -15,4 +15,9 @@ namespace SkyPayment.Core.Entities
         DateTime CreateDate { get; set; }
         DateTime UpdateDate { get; set; }
     }
+
+    public interface IUserEntity : IDatedEntity
+    {
+        string Role { get; set; }
+    }
 }
