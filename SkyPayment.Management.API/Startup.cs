@@ -10,7 +10,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using SkyPayment.Core;
+using SkyPayment.Core.Mongo;
 
 namespace SkyPayment.API
 {
@@ -31,6 +34,7 @@ namespace SkyPayment.API
             {
                 options.MongoDbConnectionString = Configuration.GetConnectionString("MongoDb");
             });
+            services.AddScoped<SkyPaymentContext>(x=>new SkyPaymentContext(x.GetRequiredService<IOptions<Settings>>().Value));
 
         }
 

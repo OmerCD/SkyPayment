@@ -7,47 +7,47 @@ using SkyPayment.Core.Entities;
 
 namespace SkyPayment.Repository.Interfaces
 {
-    public interface IRepository<TDocument> where TDocument : IEntity 
+    public interface IRepository<T> where T : IEntity 
     {
-        IQueryable<TDocument> AsQueryable();
+        IQueryable<T> AsQueryable();
 
-        IEnumerable<TDocument> FilterBy(
-            Expression<Func<TDocument, bool>> filterExpression);
+        IEnumerable<T> FilterBy(
+            Expression<Func<T, bool>> filterExpression);
 
         IEnumerable<TProjected> FilterBy<TProjected>(
-            Expression<Func<TDocument, bool>> filterExpression,
-            Expression<Func<TDocument, TProjected>> projectionExpression);
+            Expression<Func<T, bool>> filterExpression,
+            Expression<Func<T, TProjected>> projectionExpression);
 
-        TDocument FindOne(Expression<Func<TDocument, bool>> filterExpression);
+        T FindOne(Expression<Func<T, bool>> filterExpression);
 
-        Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression);
+        Task<T> FindOneAsync(Expression<Func<T, bool>> filterExpression);
 
-        TDocument FindById(string id);
+        T FindById(string id);
 
-        Task<TDocument> FindByIdAsync(string id);
+        Task<T> FindByIdAsync(string id);
 
-        void InsertOne(TDocument document);
+        void InsertOne(T document);
 
-        Task InsertOneAsync(TDocument document);
+        Task InsertOneAsync(T document);
 
-        void InsertMany(ICollection<TDocument> documents);
+        void InsertMany(ICollection<T> documents);
 
-        Task InsertManyAsync(ICollection<TDocument> documents);
+        Task InsertManyAsync(ICollection<T> documents);
 
-        void ReplaceOne(TDocument document);
+        void ReplaceOne(T document);
 
-        Task ReplaceOneAsync(TDocument document);
+        Task ReplaceOneAsync(T document);
 
-        void DeleteOne(Expression<Func<TDocument, bool>> filterExpression);
+        void DeleteOne(Expression<Func<T, bool>> filterExpression);
 
-        Task DeleteOneAsync(Expression<Func<TDocument, bool>> filterExpression);
+        Task DeleteOneAsync(Expression<Func<T, bool>> filterExpression);
 
         void DeleteById(string id);
 
         Task DeleteByIdAsync(string id);
 
-        void DeleteMany(Expression<Func<TDocument, bool>> filterExpression);
+        void DeleteMany(Expression<Func<T, bool>> filterExpression);
 
-        Task DeleteManyAsync(Expression<Func<TDocument, bool>> filterExpression);
+        Task DeleteManyAsync(Expression<Func<T, bool>> filterExpression);
     }
 }
