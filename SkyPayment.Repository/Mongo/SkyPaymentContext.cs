@@ -12,6 +12,10 @@ namespace SkyPayment.Core.Mongo
             _database = new MongoClient(settings.MongoDbConnectionString).GetDatabase("SkyPaymentDb");
         }
 
+        public IMongoCollection<T> Get<T>()
+        {
+            return _database.GetCollection<T>(nameof(T));
+        }
         public void Test()
         {
             var collection = _database.GetCollection<Restaurant>(nameof(Restaurant));

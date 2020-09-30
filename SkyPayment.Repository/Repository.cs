@@ -13,9 +13,8 @@ namespace SkyPayment.Repository
     public class Repository<T>: IRepository<T> where T :IEntity
     {
         private SkyPaymentContext _context;
-        private readonly IMongoCollection<T> _collection;
-        
-        public Repository(SkyPaymentContext context, IMongoCollection<T> collection)
+        private IMongoCollection<T> Collection => _context.Get<T>();
+        public Repository(SkyPaymentContext context)
         {
             _context = context;
             // _collection = _context;
