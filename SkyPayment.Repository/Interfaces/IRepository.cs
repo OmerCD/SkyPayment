@@ -22,9 +22,9 @@ namespace SkyPayment.Repository.Interfaces
 
         Task<T> FindOneAsync(Expression<Func<T, bool>> filterExpression);
 
-        T FindById(string id);
+        T FindById(Guid id);
 
-        Task<T> FindByIdAsync(string id);
+        Task<T> FindByIdAsync(Guid id);
 
         void InsertOne(T document);
 
@@ -42,9 +42,9 @@ namespace SkyPayment.Repository.Interfaces
 
         Task DeleteOneAsync(Expression<Func<T, bool>> filterExpression);
 
-        void DeleteById(string id);
+        void DeleteById(Guid id);
 
-        Task DeleteByIdAsync(string id);
+        Task DeleteByIdAsync(Guid id);
 
         void DeleteMany(Expression<Func<T, bool>> filterExpression);
 

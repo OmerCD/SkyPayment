@@ -15,6 +15,8 @@ using MongoDB.Driver;
 using SkyPayment.Core;
 using SkyPayment.Core.Mongo;
 using SkyPayment.Core;
+using SkyPayment.Core.Entities;
+using SkyPayment.Repository;
 
 namespace SkyPayment.API
 {
@@ -35,6 +37,7 @@ namespace SkyPayment.API
             {
                 options.MongoDbConnectionString = Configuration.GetConnectionString("MongoDb");
             });
+            services.AddRepositories(typeof(IEntity));
             services.AddScoped<SkyPaymentContext>(x=>new SkyPaymentContext(x.GetRequiredService<IOptions<Settings>>().Value));
 
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using SkyPayment.Core.Entities;
 using SkyPayment.Core.Mongo;
@@ -22,12 +23,12 @@ namespace SkyPayment.Repository
 
         public IQueryable<T> AsQueryable()
         {
-            throw new NotImplementedException();
+            return Collection.AsQueryable();
         }
 
         public IEnumerable<T> FilterBy(Expression<Func<T, bool>> filterExpression)
         {
-            throw new NotImplementedException();
+            return Collection.AsQueryable().Where(filterExpression);
         }
 
         public IEnumerable<TProjected> FilterBy<TProjected>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, TProjected>> projectionExpression)
@@ -37,72 +38,82 @@ namespace SkyPayment.Repository
 
         public T FindOne(Expression<Func<T, bool>> filterExpression)
         {
-            throw new NotImplementedException();
+            return Collection.AsQueryable().FirstOrDefault(filterExpression);
         }
 
         public Task<T> FindOneAsync(Expression<Func<T, bool>> filterExpression)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Collection.AsQueryable().FirstOrDefault(filterExpression));
         }
 
-        public T FindById(string id)
+        public T FindById(Guid id)
         {
-            throw new NotImplementedException();
+            return Collection.AsQueryable().FirstOrDefault(x => x.Id == id);
         }
 
-        public Task<T> FindByIdAsync(string id)
+        public Task<T> FindByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => Collection.AsQueryable().FirstOrDefault(x => x.Id == id));
         }
 
         public void InsertOne(T document)
         {
-            throw new NotImplementedException();
+            Collection.InsertOne(document);
         }
 
         public Task InsertOneAsync(T document)
         {
-            throw new NotImplementedException();
+            return Collection.InsertOneAsync(document);
         }
 
         public void InsertMany(ICollection<T> documents)
         {
-            throw new NotImplementedException();
+            Collection.InsertMany(documents);
         }
 
         public Task InsertManyAsync(ICollection<T> documents)
         {
-            throw new NotImplementedException();
+            return Collection.InsertManyAsync(documents);
         }
 
         public void ReplaceOne(T document)
         {
-            throw new NotImplementedException();
+            var filter = Builders<T>.Filter.Eq("_id", document.Id);
+            Collection.ReplaceOne(filter, document);
         }
 
         public Task ReplaceOneAsync(T document)
         {
-            throw new NotImplementedException();
+            var filter = Builders<T>.Filter.Eq("_id", document.Id);
+            return Collection.ReplaceOneAsync(filter, document);
         }
 
         public void DeleteOne(Expression<Func<T, bool>> filterExpression)
         {
-            throw new NotImplementedException();
+            var found = Collection.AsQueryable().FirstOrDefault(filterExpression);
+            if (found == null) return;
+            var filter = Builders<T>.Filter.Eq("_id", found.Id);
+            Collection.DeleteOne(filter);
         }
 
         public Task DeleteOneAsync(Expression<Func<T, bool>> filterExpression)
         {
-            throw new NotImplementedException();
+            var found = Collection.AsQueryable().FirstOrDefault(filterExpression);
+            if (found == null) return Task.CompletedTask;
+            var filter = Builders<T>.Filter.Eq("_id", found.Id);
+            return Collection.DeleteOneAsync(filter);
         }
 
-        public void DeleteById(string id)
+        public void DeleteById(Guid id)
         {
-            throw new NotImplementedException();
+            var filter = Builders<T>.Filter.Eq("_id", id);
+            Collection.DeleteOne(filter);
         }
 
-        public Task DeleteByIdAsync(string id)
+        public Task DeleteByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var filter = Builders<T>.Filter.Eq("_id", id);
+            return Collection.DeleteOneAsync(filter);
         }
 
         public void DeleteMany(Expression<Func<T, bool>> filterExpression)
