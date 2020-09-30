@@ -11,7 +11,7 @@ using SkyPayment.Repository.Interfaces;
 
 namespace SkyPayment.Repository
 {
-    public class Repository<T>: IRepository<T> where T :IEntity
+    public class Repository<T>: IRepository<T> where T :BaseEntity
     {
         private SkyPaymentContext _context;
         private IMongoCollection<T> Collection => _context.Get<T>();
@@ -46,12 +46,12 @@ namespace SkyPayment.Repository
             return Task.Run(() => Collection.AsQueryable().FirstOrDefault(filterExpression));
         }
 
-        public T FindById(Guid id)
+        public T FindById(string id)
         {
             return Collection.AsQueryable().FirstOrDefault(x => x.Id == id);
         }
 
-        public Task<T> FindByIdAsync(Guid id)
+        public Task<T> FindByIdAsync(string id)
         {
             return Task.Run(() => Collection.AsQueryable().FirstOrDefault(x => x.Id == id));
         }
@@ -104,13 +104,13 @@ namespace SkyPayment.Repository
             return Collection.DeleteOneAsync(filter);
         }
 
-        public void DeleteById(Guid id)
+        public void DeleteById(string id)
         {
             var filter = Builders<T>.Filter.Eq("_id", id);
             Collection.DeleteOne(filter);
         }
 
-        public Task DeleteByIdAsync(Guid id)
+        public Task DeleteByIdAsync(string id)
         {
             var filter = Builders<T>.Filter.Eq("_id", id);
             return Collection.DeleteOneAsync(filter);

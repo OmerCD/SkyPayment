@@ -2,7 +2,7 @@
 
 namespace SkyPayment.Core.Entities
 {
-    public class MenuItemTag : IEntity
+    public class MenuItemTag : BaseEntity
     {
         public Guid Id { get; set; }
         public bool IsDeleted { get; set; }

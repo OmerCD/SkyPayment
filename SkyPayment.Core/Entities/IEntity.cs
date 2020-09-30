@@ -1,23 +1,25 @@
 ﻿using System;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace SkyPayment.Core.Entities
 {
-    public interface IEntity
+    public abstract class BaseEntity
     {
         [BsonId]
-        Guid Id { get; set; }
-        bool IsDeleted { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
+        public bool IsDeleted { get; set; }
     }
 
-    public interface IDatedEntity : IEntity
+    public abstract class DatedEntity : BaseEntity
     {
-        DateTime CreateDate { get; set; }
-        DateTime UpdateDate { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime? UpdateDate { get; set; }
     }
 
-    public interface IUserEntity : IDatedEntity
+    public abstract class UserEntity : DatedEntity
     {
-        string Role { get; set; }
+        public string Role { get; set; }
     }
 }

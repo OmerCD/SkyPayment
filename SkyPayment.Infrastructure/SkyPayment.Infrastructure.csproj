@@ -18,6 +18,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\SkyPayment.Contract\SkyPayment.Contract.csproj" />
+      <ProjectReference Include="..\SkyPayment.Repository\SkyPayment.Repository.csproj" />
     </ItemGroup>
 
 </Project>

@@ -14,7 +14,7 @@ namespace SkyPayment.Core.Mongo
 
         public IMongoCollection<T> Get<T>()
         {
-            return _database.GetCollection<T>(nameof(T));
+            return _database.GetCollection<T>(typeof(T).Name);
         }
         public void Test()
         {

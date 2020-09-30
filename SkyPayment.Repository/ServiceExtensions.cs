@@ -10,8 +10,7 @@ namespace SkyPayment.Repository
     {
         public static IServiceCollection AddRepositories(this IServiceCollection services, Type domainType)
         {
-            var domainTypeAssembly = domainType.Assembly;
-            var type = typeof(IEntity);
+            var type = typeof(BaseEntity);
             
             var types = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(s => s.GetTypes())

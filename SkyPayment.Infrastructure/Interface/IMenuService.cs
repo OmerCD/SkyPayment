@@ -1,10 +1,12 @@
-﻿using SkyPayment.Contract.RequestModel;
+﻿using System.Collections.Generic;
+using SkyPayment.Contract.RequestModel;
 using SkyPayment.Contract.ResponseModel;
 
 namespace SkyPayment.Infrastructure.Interface
 {
-    public interface IMenuService
+    public interface IMenuService : IService
     {
-        public CreateMenuResponseModel Add(CreateMenuRequestModel model);
+        CreateMenuResponseModel Add(CreateMenuRequestModel model);
+        IEnumerable<MenuResponseModel> GetAll();
     }
 }

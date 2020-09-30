@@ -7,7 +7,7 @@ using SkyPayment.Core.Entities;
 
 namespace SkyPayment.Repository.Interfaces
 {
-    public interface IRepository<T> where T : IEntity 
+    public interface IRepository<T> where T : BaseEntity 
     {
         IQueryable<T> AsQueryable();
 
@@ -22,9 +22,9 @@ namespace SkyPayment.Repository.Interfaces
 
         Task<T> FindOneAsync(Expression<Func<T, bool>> filterExpression);
 
-        T FindById(Guid id);
+        T FindById(string id);
 
-        Task<T> FindByIdAsync(Guid id);
+        Task<T> FindByIdAsync(string id);
 
         void InsertOne(T document);
 
@@ -42,9 +42,9 @@ namespace SkyPayment.Repository.Interfaces
 
         Task DeleteOneAsync(Expression<Func<T, bool>> filterExpression);
 
-        void DeleteById(Guid id);
+        void DeleteById(string id);
 
-        Task DeleteByIdAsync(Guid id);
+        Task DeleteByIdAsync(string id);
 
         void DeleteMany(Expression<Func<T, bool>> filterExpression);
 
