@@ -26,7 +26,7 @@ namespace SkyPayment.Repository.Interfaces
 
         Task<T> FindByIdAsync(string id);
 
-        void InsertOne(T document);
+        T InsertOne(T document);
 
         Task InsertOneAsync(T document);
 
