@@ -2,6 +2,17 @@
 {
     public class Settings
     {
-        public string MongoDbConnectionString { get; set; }
+        public ConnectionStrings ConnectionStrings { get; set; }
+        public Token Token { get; set; }
+    }
+
+    public class ConnectionStrings
+    {
+        public string MongoDb { get; set; }
+    }
+    public class Token
+    {
+        public string Issuer { get; set; }
+        public string SecretKey { get; set; }
     }
 }
