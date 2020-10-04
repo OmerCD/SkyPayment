@@ -8,6 +8,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SkyPayment.Contract.RequestModel;
 using SkyPayment.Core;
+using SkyPayment.Core.BindingModel;
 using SkyPayment.Infrastructure.Services;
 
 namespace SkyPayment.API.Controllers
@@ -18,6 +19,7 @@ namespace SkyPayment.API.Controllers
     {
         private readonly Settings _settings;
         private readonly IManagementAuthenticationService _managementAuthenticationService;
+        
 
         public LoginController(IOptions<Settings> settings, IManagementAuthenticationService managementAuthenticationService)
         {
@@ -55,6 +57,7 @@ namespace SkyPayment.API.Controllers
         [HttpPost]
         public IActionResult Register([FromBody]RegisterModel registerModel)
         {
+            
             return Ok();
         }
     

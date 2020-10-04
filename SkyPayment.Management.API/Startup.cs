@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,6 +21,7 @@ using SkyPayment.Core.Mongo;
 using SkyPayment.Core;
 using SkyPayment.Core.Entities;
 using SkyPayment.Infrastructure;
+using SkyPayment.Infrastructure.Services;
 using SkyPayment.Repository;
 
 namespace SkyPayment.API
@@ -45,6 +47,7 @@ namespace SkyPayment.API
             services.Configure<Settings>(Configuration);
             services.AddRepositories(typeof(BaseEntity));
             services.AddServices();
+            services.AddMediatR(typeof(Domain.Domain));
             services.AddScoped<SkyPaymentContext>(x =>
                 new SkyPaymentContext(x.GetRequiredService<IOptions<Settings>>().Value));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -62,6 +65,8 @@ namespace SkyPayment.API
                             new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Token:SecretKey"]))
                     };
                 });
+            services.AddScoped<IManagementAuthenticationService, ManagementAuthenticationService>();
+            services.AddScoped<IRestaurantService, RestaurantService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
