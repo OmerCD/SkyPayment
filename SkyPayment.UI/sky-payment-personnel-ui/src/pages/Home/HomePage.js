@@ -10,7 +10,7 @@ function Homepage() {
     }
     return (
         <div>
-            <h1>Welcome Manager</h1>
+            <h1>Welcome</h1>
             <button onClick={testAuth}>Test</button>
         </div>
     )

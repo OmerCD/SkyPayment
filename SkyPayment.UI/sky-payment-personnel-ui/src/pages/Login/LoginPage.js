@@ -3,7 +3,7 @@ import Login from "../../components/login/Login";
 import AuthenticationService from "../../services/AuthenticationService";
 import {useAuth} from "../../context/AuthContext";
 import './Login.css';
-import {Header} from "semantic-ui-react";
+import {Header, Icon} from "semantic-ui-react";
 
 function LoginPage() {
     const authService = new AuthenticationService(useAuth());
@@ -22,7 +22,7 @@ function LoginPage() {
         <div className={'login-container'}>
             <div className={'login-border'}>
                 <Header  as='h2'>
-                    <Header.Content style={{float:'left'}}>Yönetici Girişi</Header.Content>
+                    <Header.Content style={{float:'left'}}>Personel Girişi</Header.Content>
                 </Header>
                 <Login onValidSubmit={handleValidSubmit}/>
                 {errorArea}
