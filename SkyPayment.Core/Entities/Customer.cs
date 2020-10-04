@@ -12,5 +12,6 @@ namespace SkyPayment.Core.Entities
         public ICollection<Order> CurrentOrders { get; set; }
         public ICollection<Order> PreviousOrders { get; set; }
         public ICollection<PaymentMethod> PaymentMethods { get; set; }
+        public override string Role { get; set; } = "Customer";
     }
 }

@@ -56,9 +56,10 @@ namespace SkyPayment.Repository
             return Task.Run(() => Collection.AsQueryable().FirstOrDefault(x => x.Id == id));
         }
 
-        public void InsertOne(T document)
-        {
+        public T InsertOne(T document)
+        { 
             Collection.InsertOne(document);
+            return document;
         }
 
         public Task InsertOneAsync(T document)
