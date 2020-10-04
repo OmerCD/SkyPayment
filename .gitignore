@@ -4,3 +4,6 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 /.idea/
+/node_modules/
+node_modules/
+.idea/
