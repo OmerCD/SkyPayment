@@ -6,6 +6,7 @@ import AuthenticationService from "../../services/AuthenticationService";
 import Homepage from "../../pages/Home/HomePage";
 import RestaurantPage from "../../pages/Restaurant/RestaurantPage";
 import AddRestaurantPage from "../../pages/Restaurant/AddRestaurantPage";
+import OrdersPage from "../../pages/Orders/OrdersPage";
 
 function Switcher() {
     const authenticationService = new AuthenticationService(useAuth());
@@ -17,11 +18,8 @@ function Switcher() {
                 <Route exact path='/'>
                     <Homepage/>
                 </Route>
-                <Route path='/restaurants/list'>
-                    <RestaurantPage/>
-                </Route>
-                <Route path='/menus/list'>
-
+                <Route path='/order/list'>
+                    <OrdersPage/>
                 </Route>
             </>
         )

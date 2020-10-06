@@ -4,8 +4,11 @@ import AuthenticationService from "../../services/AuthenticationService";
 function Homepage() {
     const authService = new AuthenticationService();
     const testAuth = () => {
-        authService.testToken().then(result => {
-            console.log("Auth Token Test :", result);
+        authService.testManagementToken().then(result => {
+            console.log("Auth Token Management Test :", result);
+        });
+        authService.testPersonnelToken().then(result => {
+            console.log("Auth Token Personnel Test :", result);
         })
     }
     return (

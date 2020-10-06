@@ -11,7 +11,7 @@ function LoginPage() {
     const handleValidSubmit = (loginData) => {
         authService.login(loginData.userName, loginData.password).then(result => {
             console.log(result)
-            if (result.status !== 200){
+            if (result?.status !== 200){
                 setErrorArea((
                     <label style={{marginTop:'16px', color:'red'}}>Kullanıcı adı veya şifre hatalı</label>
                 ));
