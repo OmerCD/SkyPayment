@@ -12,6 +12,9 @@ namespace SkyPayment.Contract.ResponseModel
         public string FaxNumber { get; set; }
         public string Email { get; set; }
         public string Website { get; set; }
+
+        public string Id { get; set; }
+
         //public ICollection<MenuItemTag> AvailableTags { get; set; }
     }
 }

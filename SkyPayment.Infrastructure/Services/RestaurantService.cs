@@ -5,6 +5,7 @@ using System.Security.Claims;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using SkyPayment.Core.Entities;
+using SkyPayment.Infrastructure.Interface;
 using SkyPayment.Repository.Interfaces;
 
 namespace SkyPayment.Infrastructure.Services
@@ -33,6 +34,12 @@ namespace SkyPayment.Infrastructure.Services
             _managementUserRepository.UpdateOne(managementUser,
                 Builders<ManagementUser>.Update.Set(nameof(managementUser.Restaurants), managementUser.Restaurants));
             return restaurant;
+        }
+
+        public Restaurant GetById(string managementUserId, string restaurantId)
+        {
+            var managementUser = _managementUserRepository.FindById(managementUserId);
+            return managementUser.Restaurants.FirstOrDefault(x => x.Id == restaurantId);
         }
 
         public IEnumerable<Restaurant> GetManagementUserRestaurants(string userId)

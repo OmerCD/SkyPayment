@@ -16,7 +16,8 @@ export function useRequest(){
     axiosInstance.interceptors.response.use(response => {
         return response;
     }, error => {
-        if (error.response.status === 401){
+        console.log(error);
+        if (error.response?.status === 401){
             localStorage.removeItem('token');
             authContext.setToken(null);
         }

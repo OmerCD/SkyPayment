@@ -3,11 +3,6 @@ using AutoMapper;
 
 namespace SkyPayment.Mappings
 {
-    public class AuthenticationMapping : Profile
-    {
-        public AuthenticationMapping()
-        {
-            
-        }
+    public class MappingProfile {
     }
 }

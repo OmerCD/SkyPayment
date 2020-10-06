@@ -7,12 +7,12 @@ namespace SkyPayment.Domain.Queries
 {
     public class GetAllRestaurantQuery: IRequest<IEnumerable<RestaurantResponseModel>>
     {
-        public GetAllRestaurantQuery(object userId)
+        public GetAllRestaurantQuery(string userId)
         {
             UserId = userId;
         }
 
-        public object UserId { get; set; }
+        public string UserId { get; set; }
 
         
     }

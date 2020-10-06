@@ -1,11 +1,15 @@
-﻿using System.Security.Claims;
+﻿using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SkyPayment.API.Helper;
 using SkyPayment.Contract.RequestModel;
 using SkyPayment.Domain.Command;
+using SkyPayment.Domain.Helpers;
 using SkyPayment.Domain.Queries;
+using SkyPayment.Domain.Queries.RestaurantQueries;
+using SkyPayment.Infrastructure.Interface;
 using SkyPayment.Infrastructure.Services;
 
 namespace SkyPayment.API.Controllers
@@ -32,6 +36,14 @@ namespace SkyPayment.API.Controllers
             return Ok(send); 
         }
 
+        [HttpGet("{restaurantId}")]
+        public async Task<IActionResult> GetRestaurantById(string restaurantId)
+        {
+            var managementUserId = User.GetManagementUserId();
+            var query = new GetRestaurantByIdQuery(managementUserId, restaurantId);
+            var response = await _mediator.Send(query);
+            return response.ToActionResult();
+        }
         [HttpPost]
         public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantRequestModel createRestaurantRequestModel)
         {

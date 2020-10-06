@@ -2,9 +2,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using MongoDB.Bson;
 using SkyPayment.Contract.ResponseModel;
 using SkyPayment.Core.Entities;
 using SkyPayment.Domain.Command;
+using SkyPayment.Infrastructure.Interface;
 using SkyPayment.Infrastructure.Services;
 
 namespace SkyPayment.Domain.Handlers
@@ -28,8 +30,8 @@ namespace SkyPayment.Domain.Handlers
                 CreateDate = DateTime.Now,
                 PhoneNumber = request.PhoneNumber,
                 Website = request.Website,
-                ManagementUserId = request.ManagementUserId
-                
+                ManagementUserId = request.ManagementUserId,
+                Id = ObjectId.GenerateNewId().ToString()
             });
             if (restaurant != null)
             {

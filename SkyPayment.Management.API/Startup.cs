@@ -1,4 +1,5 @@
 using System.Text;
+using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -12,6 +13,7 @@ using SkyPayment.Core;
 using SkyPayment.Core.Mongo;
 using SkyPayment.Core.Entities;
 using SkyPayment.Infrastructure;
+using SkyPayment.Mappings;
 using SkyPayment.Repository;
 
 namespace SkyPayment.API
@@ -38,6 +40,7 @@ namespace SkyPayment.API
             services.AddRepositories(typeof(BaseEntity));
             services.AddServices();
             services.AddMediatR(typeof(Domain.Domain));
+            services.AddAutoMapper(typeof(MappingProfile));
             services.AddScoped<SkyPaymentContext>(x =>
                 new SkyPaymentContext(x.GetRequiredService<IOptions<Settings>>().Value));
             services.AddAuthorization(options =>

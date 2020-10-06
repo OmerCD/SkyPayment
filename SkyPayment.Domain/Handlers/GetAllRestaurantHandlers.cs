@@ -6,6 +6,7 @@ using MediatR;
 using SkyPayment.Contract.ResponseModel;
 using SkyPayment.Core.Entities;
 using SkyPayment.Domain.Queries;
+using SkyPayment.Infrastructure.Interface;
 using SkyPayment.Infrastructure.Services;
 
 namespace SkyPayment.Domain.Handlers
@@ -21,7 +22,7 @@ namespace SkyPayment.Domain.Handlers
         public async  Task<IEnumerable<RestaurantResponseModel>> Handle(GetAllRestaurantQuery request,
             CancellationToken cancellationToken)
         {
-            var allRestaurant = _restaurantService.GetAllRestaurant().Select(Build);
+            var allRestaurant = _restaurantService.GetManagementUserRestaurants(request.UserId).Select(Build);
             return allRestaurant;
         }
 
@@ -34,7 +35,8 @@ namespace SkyPayment.Domain.Handlers
                 Name = restaurant.Name,
                 Website = restaurant.Website,
                 FaxNumber = restaurant.FaxNumber,
-                PhoneNumber = restaurant.PhoneNumber
+                PhoneNumber = restaurant.PhoneNumber,
+                Id = restaurant.Id
             };
         }
     }

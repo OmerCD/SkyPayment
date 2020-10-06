@@ -9,6 +9,7 @@
       <ProjectReference Include="..\SkyPayment.API.Helper\SkyPayment.API.Helper.csproj" />
       <ProjectReference Include="..\SkyPayment.Contract\SkyPayment.Contract.csproj" />
       <ProjectReference Include="..\SkyPayment.Domain\SkyPayment.Domain.csproj" />
+      <ProjectReference Include="..\SkyPayment.Mappings\SkyPayment.Mappings.csproj" />
     </ItemGroup>
 
     <ItemGroup>

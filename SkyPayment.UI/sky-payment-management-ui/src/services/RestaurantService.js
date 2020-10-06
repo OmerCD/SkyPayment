@@ -4,6 +4,10 @@ class RestaurantService {
     constructor() {
         this.restaurantRequests = new RestaurantRequests();
     }
+    async getAll(){
+        const response = await this.restaurantRequests.getUserRestaurants();
+        return response.data;
+    }
     async getById(restaurantId){
         const response = await this.restaurantRequests.getRestaurant(restaurantId)
         return response.data;

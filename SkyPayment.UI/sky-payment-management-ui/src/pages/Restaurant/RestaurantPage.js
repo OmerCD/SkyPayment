@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Modal} from "semantic-ui-react";
 import {Route, Switch} from "react-router-dom";
 import AddRestaurantPage from "./AddRestaurantPage";
@@ -22,6 +22,12 @@ function RestaurantPage() {
 
     const restaurantService = new RestaurantService();
 
+    useEffect(()=>{
+        restaurantService.getAll().then(response => {
+            setRestaurants(response);
+        })
+    },[])
+
     const onRestaurantAdd = () => {
         setRestaurantModalState({
             header: 'Restoran Ekleme',
@@ -43,7 +49,23 @@ function RestaurantPage() {
         })
     }
     const onRestaurantEdit = (id) => {
-
+        restaurantService.getById(id).then(response => {
+            if (response) {
+                setRestaurantModalState({
+                    header: 'Restoran Düzenleme',
+                    selectedRestaurant: response,
+                    open: true,
+                    close: () => {
+                        setRestaurantModalState({...restaurantModalState, open: false})
+                    },
+                    onSubmit: (restaurant) => {
+                        restaurantService.editRestaurant(restaurant).then(updateResult => {
+                            setRestaurantModalState({...restaurantModalState, open: false});
+                        })
+                    }
+                })
+            }
+        })
     }
     const onRestaurantDelete = (id) => {
 

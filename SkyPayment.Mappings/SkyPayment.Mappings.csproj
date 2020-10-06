@@ -8,4 +8,9 @@
       <PackageReference Include="AutoMapper" Version="10.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\SkyPayment.Contract\SkyPayment.Contract.csproj" />
+      <ProjectReference Include="..\SkyPayment.Core\SkyPayment.Core.csproj" />
+    </ItemGroup>
+
 </Project>
