@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyPayment.API.Helper", "Sk
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyPayment.Mappings", "SkyPayment.Mappings\SkyPayment.Mappings.csproj", "{D064E9A7-AAF3-4043-80B1-CF288425240A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyPayment.Personnel.API", "SkyPayment.Personnel.API\SkyPayment.Personnel.API.csproj", "{4583E557-193D-4BD1-97E4-607004DEFD3B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,5 +56,9 @@ Global
 		{D064E9A7-AAF3-4043-80B1-CF288425240A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D064E9A7-AAF3-4043-80B1-CF288425240A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D064E9A7-AAF3-4043-80B1-CF288425240A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4583E557-193D-4BD1-97E4-607004DEFD3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4583E557-193D-4BD1-97E4-607004DEFD3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4583E557-193D-4BD1-97E4-607004DEFD3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4583E557-193D-4BD1-97E4-607004DEFD3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
