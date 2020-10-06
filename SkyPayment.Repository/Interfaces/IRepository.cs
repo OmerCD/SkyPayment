@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using MongoDB.Driver;
 using SkyPayment.Core.Entities;
 
 namespace SkyPayment.Repository.Interfaces
@@ -49,5 +50,6 @@ namespace SkyPayment.Repository.Interfaces
         void DeleteMany(Expression<Func<T, bool>> filterExpression);
 
         Task DeleteManyAsync(Expression<Func<T, bool>> filterExpression);
+        void UpdateOne(T document, UpdateDefinition<T> updateDefinition);
     }
 }

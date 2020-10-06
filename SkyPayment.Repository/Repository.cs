@@ -80,9 +80,16 @@ namespace SkyPayment.Repository
         public void ReplaceOne(T document)
         {
             var filter = Builders<T>.Filter.Eq("_id", document.Id);
+            var update = new BsonDocumentUpdateDefinition<BsonDocument>(document.ToBsonDocument());
+            
             Collection.ReplaceOne(filter, document);
         }
 
+        public void UpdateOne(T document, UpdateDefinition<T> updateDefinition)
+        {
+            var filter = Builders<T>.Filter.Eq("_id", document.Id);
+            Collection.UpdateOne(filter, updateDefinition);
+        }
         public Task ReplaceOneAsync(T document)
         {
             var filter = Builders<T>.Filter.Eq("_id", document.Id);
