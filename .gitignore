@@ -31,3 +31,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 /.vs/SkyPayment/v16/.suo
+/SkyPayment.UI/sky-payment-management-ui/debug.log

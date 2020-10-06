@@ -9,8 +9,12 @@ export class AuthRequests extends BaseRequests{
         const response = await axios.post(this.baseAddress+'login',{userName,password});
         return response;
     }
-    async testAuthentication(){
-        const response = await this.axios.get('login/test');
+    async testManagementAuthentication(){
+        const response = await this.axios.get('login/test/management');
+        return response.status === 200;
+    }
+    async testPersonnelAuthentication(){
+        const response = await this.axios.get('login/test/personnel');
         return response.status === 200;
     }
 }

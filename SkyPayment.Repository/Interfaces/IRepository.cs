@@ -51,5 +51,6 @@ namespace SkyPayment.Repository.Interfaces
 
         Task DeleteManyAsync(Expression<Func<T, bool>> filterExpression);
         void UpdateOne(T document, UpdateDefinition<T> updateDefinition);
+        Task UpdateOneAsync(T document, UpdateDefinition<T> updateDefinition);
     }
 }

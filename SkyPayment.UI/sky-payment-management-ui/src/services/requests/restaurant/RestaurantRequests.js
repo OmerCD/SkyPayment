@@ -8,4 +8,13 @@ export default class RestaurantRequests extends BaseRequests{
     getUserRestaurants(){
         return this.axios.get(this.baseController);
     }
+    getRestaurant(restaurantId){
+        return this.axios.get(this.baseController+'/'+restaurantId);
+    }
+    addRestaurant(restaurant){
+        return this.axios.post(this.baseController, restaurant);
+    }
+    editRestaurant(restaurant){
+        return this.axios.put(this.baseController, restaurant);
+    }
 }

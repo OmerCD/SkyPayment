@@ -17,9 +17,11 @@ class AuthenticationService {
         return result;
 
     }
-
-    async testToken() {
-        return await this.authRequestManager.testAuthentication()
+    async testManagementToken(){
+        return await this.authRequestManager.testManagementAuthentication();
+    }
+    async testPersonnelToken() {
+        return await this.authRequestManager.testPersonnelAuthentication();
     }
 
     getToken() {

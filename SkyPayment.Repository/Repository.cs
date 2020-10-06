@@ -79,28 +79,33 @@ namespace SkyPayment.Repository
 
         public void ReplaceOne(T document)
         {
-            var filter = Builders<T>.Filter.Eq("_id", document.Id);
+            var filter = Builders<T>.Filter.Eq(nameof(document.Id), document.Id);
             var update = new BsonDocumentUpdateDefinition<BsonDocument>(document.ToBsonDocument());
             
             Collection.ReplaceOne(filter, document);
         }
-
-        public void UpdateOne(T document, UpdateDefinition<T> updateDefinition)
-        {
-            var filter = Builders<T>.Filter.Eq("_id", document.Id);
-            Collection.UpdateOne(filter, updateDefinition);
-        }
+        
         public Task ReplaceOneAsync(T document)
         {
-            var filter = Builders<T>.Filter.Eq("_id", document.Id);
+            var filter = Builders<T>.Filter.Eq(nameof(document.Id), document.Id);
             return Collection.ReplaceOneAsync(filter, document);
+        }
+        public void UpdateOne(T document, UpdateDefinition<T> updateDefinition)
+        {
+            var filter = Builders<T>.Filter.Eq(nameof(document.Id), document.Id);
+            Collection.UpdateOne(filter, updateDefinition);
+        }
+        public Task UpdateOneAsync(T document, UpdateDefinition<T> updateDefinition)
+        {
+            var filter = Builders<T>.Filter.Eq(nameof(document.Id), document.Id);
+            return Collection.UpdateOneAsync(filter, updateDefinition);
         }
 
         public void DeleteOne(Expression<Func<T, bool>> filterExpression)
         {
             var found = Collection.AsQueryable().FirstOrDefault(filterExpression);
             if (found == null) return;
-            var filter = Builders<T>.Filter.Eq("_id", found.Id);
+            var filter = Builders<T>.Filter.Eq(nameof(found.Id), found.Id);
             Collection.DeleteOne(filter);
         }
 
@@ -108,19 +113,19 @@ namespace SkyPayment.Repository
         {
             var found = Collection.AsQueryable().FirstOrDefault(filterExpression);
             if (found == null) return Task.CompletedTask;
-            var filter = Builders<T>.Filter.Eq("_id", found.Id);
+            var filter = Builders<T>.Filter.Eq(nameof(found.Id), found.Id);
             return Collection.DeleteOneAsync(filter);
         }
 
         public void DeleteById(string id)
         {
-            var filter = Builders<T>.Filter.Eq("_id", id);
+            var filter = Builders<T>.Filter.Eq(nameof(BaseEntity.Id), id);
             Collection.DeleteOne(filter);
         }
 
         public Task DeleteByIdAsync(string id)
         {
-            var filter = Builders<T>.Filter.Eq("_id", id);
+            var filter = Builders<T>.Filter.Eq(nameof(BaseEntity.Id), id);
             return Collection.DeleteOneAsync(filter);
         }
 

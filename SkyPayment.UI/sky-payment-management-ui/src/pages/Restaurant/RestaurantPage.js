@@ -1,17 +1,64 @@
-import React from "react";
-import {Menu, Sidebar, Icon, Segment} from "semantic-ui-react";
+import React, {useState} from "react";
+import {Modal} from "semantic-ui-react";
 import {Route, Switch} from "react-router-dom";
 import AddRestaurantPage from "./AddRestaurantPage";
-import styled, {css} from "styled-components";
-import {useAppSettings} from "../../context/AppSettingsContext";
 import ListRestaurant from "../../components/restaurant/ListRestaurant";
+import EditRestaurant from "../../components/restaurant/EditRestaurant";
+import RestaurantService from "../../services/RestaurantService";
 
 function RestaurantPage() {
+    const [restaurants, setRestaurants] = useState([{
+        id: 'testId',
+        name: 'TestRestaurant',
+        address: 'Bad Address',
+        personnelCount: 15
+    }]);
+    const [restaurantModalState, setRestaurantModalState] = useState({
+        open: false,
+        header: '',
+        selectedRestaurant: {},
+        onSubmit: () => {}
+    });
+
+    const restaurantService = new RestaurantService();
+
+    const onRestaurantAdd = () => {
+        setRestaurantModalState({
+            header: 'Restoran Ekleme',
+            selectedRestaurant: null,
+            open: true,
+            close: () => {
+                setRestaurantModalState({...restaurantModalState, open: false})
+            },
+            onSubmit: (restaurant) => {
+                restaurantService.addRestaurant(restaurant).then(result => {
+                    if (result){
+                        setRestaurantModalState({...restaurantModalState, open: false});
+                    }
+                    else{
+                        alert("Error")
+                    }
+                })
+            }
+        })
+    }
+    const onRestaurantEdit = (id) => {
+
+    }
+    const onRestaurantDelete = (id) => {
+
+    }
     return (
         <>
             <Switch>
                 <Route path='/restaurants/list'>
-                    <ListRestaurant restaurants={{}}/>
+                    <ListRestaurant
+                        restaurants={restaurants}
+                        onAddRestaurant={onRestaurantAdd}
+                        onDeleteRestaurant={onRestaurantDelete}
+                        onEditRestaurant={onRestaurantEdit}
+                    />
+                    <RestaurantModal {...restaurantModalState}/>
                 </Route>
                 <Route path='/restaurants/addRestaurant'>
                     <AddRestaurantPage/>
@@ -20,5 +67,14 @@ function RestaurantPage() {
         </>
     )
 }
+
+const RestaurantModal = ({header, selectedRestaurant, onSubmit, open, close}) => (
+    <Modal open={open} onClose={close}>
+        <Modal.Header>{header}</Modal.Header>
+        <Modal.Content>
+            <EditRestaurant restaurant={selectedRestaurant} onSubmit={onSubmit}/>
+        </Modal.Content>
+    </Modal>
+)
 
 export default RestaurantPage;
