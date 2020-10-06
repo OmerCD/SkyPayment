@@ -2,7 +2,9 @@
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SkyPayment.API.Helper;
 using SkyPayment.Contract.RequestModel;
+using SkyPayment.Domain.Command;
 using SkyPayment.Domain.Queries;
 using SkyPayment.Infrastructure.Services;
 
@@ -31,9 +33,18 @@ namespace SkyPayment.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateRestaurant([FromBody] CreateRestaurantRequestModel createRestaurantRequestModel)
+        public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantRequestModel createRestaurantRequestModel)
         {
-            return Ok();
+            // var command = new ManagementUserRegisterCommand(registerModel.Email,registerModel.Name,registerModel.Password, registerModel.LastName, registerModel.UserName);
+            // var response = await _mediator.Send(command);
+            // return response.ToActionResult();
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            var command = new CreateRestaurantCommand(createRestaurantRequestModel.Name,
+                createRestaurantRequestModel.Address, createRestaurantRequestModel.PhoneNumber,
+                createRestaurantRequestModel.FaxNumber,
+                createRestaurantRequestModel.Email, createRestaurantRequestModel.Website,  claimsIdentity?.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var response = await _mediator.Send(command);
+            return response.ToActionResult();
         }
     }
 }

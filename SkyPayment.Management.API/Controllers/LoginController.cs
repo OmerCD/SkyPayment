@@ -2,14 +2,15 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
+using SkyPayment.API.Helper;
 using SkyPayment.Contract.RequestModel;
 using SkyPayment.Core;
-using SkyPayment.Core.BindingModel;
-using SkyPayment.Infrastructure.Services;
+using SkyPayment.Domain.Queries.AuthenticationQueries;
 
 namespace SkyPayment.API.Controllers
 {
@@ -18,65 +19,34 @@ namespace SkyPayment.API.Controllers
     public class LoginController : ControllerBase
     {
         private readonly Settings _settings;
-        private readonly IManagementAuthenticationService _managementAuthenticationService;
-        
-
-        public LoginController(IOptions<Settings> settings, IManagementAuthenticationService managementAuthenticationService)
+        private readonly IMediator _mediator;
+        public LoginController(IOptions<Settings> settings, IMediator mediator)
         {
-            _managementAuthenticationService = managementAuthenticationService;
+            _mediator = mediator;
             _settings = settings.Value;
         }
 
-        [Authorize]
-        [HttpGet("Test")]
-        public IActionResult TestAuth()
+        [Authorize(Policy = "ManagementRole")]
+        [HttpGet("test/management")]
+        public IActionResult TestManagementAuth()
+        {
+            return Ok();
+        }
+        [Authorize(Policy = "PersonnelRole")]
+        [HttpGet("test/personnel")]
+        public IActionResult TestPersonnelAuth()
         {
             return Ok();
         }
 
         [HttpPost]
-        public IActionResult Login(LoginModel loginModel)
+        public async Task<IActionResult> Login(LoginModel loginModel)
         {
-            var managementUser = _managementAuthenticationService.GetManagementUser(loginModel.UserName);
-            if (managementUser != null)
-            {
-                if (managementUser.Password == loginModel.Password)
-                {
-                    return Ok(GenerateJSONWebToken(loginModel));
-                }
-                else
-                {
-                    return Unauthorized("Password is wrong");
-                }
-            }
-            else
-            {
-                return Unauthorized("User not found");
-            }
+            var query = new ManagementLoginQuery(loginModel.Password, loginModel.UserName);
+            var response = await _mediator.Send(query);
+            return response.ToActionResult();
         }
-        [HttpPost]
-        public IActionResult Register([FromBody]RegisterModel registerModel)
-        {
-            
-            return Ok();
-        }
-    
-        private string GenerateJSONWebToken(LoginModel userInfo)
-        {
-            var managementUser = _managementAuthenticationService.GetManagementUser(userInfo.UserName);
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_settings.Token.SecretKey));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            var claims = new Claim[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, managementUser.Id),
-            };
-            var token = new JwtSecurityToken(_settings.Token.Issuer,
-                _settings.Token.Issuer,
-                claims,
-                expires: DateTime.Now.AddMinutes(120),
-                signingCredentials: credentials);
-         
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
+  
+       
     }
 }

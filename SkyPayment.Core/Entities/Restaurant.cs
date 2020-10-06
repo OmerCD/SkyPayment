@@ -16,6 +16,7 @@ namespace SkyPayment.Core.Entities
         public string FaxNumber { get; set; }
         public string Email { get; set; }
         public string Website { get; set; }
+        public string ManagementUserId { get; set; }
         public ICollection<MenuItemTag> AvailableTags { get; set; }
     }
 }

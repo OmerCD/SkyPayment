@@ -16,7 +16,8 @@ namespace SkyPayment.Infrastructure.Services
 
         public ManagementUser GetManagementUser(string userName)
         {
-            return _managementUserRepository.FindOne(x => x.UserName == userName);
+            var normalizedUserName = userName.ToUpper().Trim();
+            return _managementUserRepository.FindOne(x => x.NormalizedUserName == normalizedUserName);
         }
 
         public ManagementUser CreateManagementUser(ManagementBindingModel managementBindingModel)
@@ -28,11 +29,12 @@ namespace SkyPayment.Infrastructure.Services
         {
             return new ManagementUser
             {
-                Email = managementBindingModel.Email,
-                Name = managementBindingModel.Name,
-                Password = managementBindingModel.Password,
-                LastName = managementBindingModel.LastName,
-                UserName = managementBindingModel.UserName
+                Email = managementBindingModel.Email.Trim(),
+                Name = managementBindingModel.Name.Trim(),
+                Password = managementBindingModel.Password.Trim(),
+                LastName = managementBindingModel.LastName.Trim(),
+                UserName = managementBindingModel.UserName.Trim(),
+                NormalizedUserName = managementBindingModel.UserName.Trim().ToUpper()
             };
         }
     }

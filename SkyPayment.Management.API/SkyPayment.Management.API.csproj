@@ -6,14 +6,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\SkyPayment.API.Helper\SkyPayment.API.Helper.csproj" />
       <ProjectReference Include="..\SkyPayment.Contract\SkyPayment.Contract.csproj" />
-      <ProjectReference Include="..\SkyPayment.Core\SkyPayment.Core.csproj" />
       <ProjectReference Include="..\SkyPayment.Domain\SkyPayment.Domain.csproj" />
-      <ProjectReference Include="..\SkyPayment.Infrastructure\SkyPayment.Infrastructure.csproj" />
-      <ProjectReference Include="..\SkyPayment.Repository\SkyPayment.Repository.csproj" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
       <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
       <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.8" />
     </ItemGroup>

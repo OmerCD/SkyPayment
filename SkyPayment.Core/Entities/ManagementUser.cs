@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace SkyPayment.Core.Entities
 {
@@ -11,6 +11,8 @@ namespace SkyPayment.Core.Entities
         public string LastName { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-        public ICollection<Restaurant> Restaurants { get; set; }
+        public string NormalizedUserName { get; set; }
+        public ICollection<Restaurant> Restaurants { get; set; } = new List<Restaurant>();
+        [BsonIgnore] public string FullName => $"{Name} {LastName}";
     }
 }
