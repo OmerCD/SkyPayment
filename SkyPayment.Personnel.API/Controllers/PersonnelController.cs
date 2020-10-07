@@ -17,6 +17,10 @@ namespace SkyPayment.Personnel.API.Controllers
         {
             
         }
-        
+
+        public IActionResult Orders()
+        {
+            return Ok();
+        }
     }
 }

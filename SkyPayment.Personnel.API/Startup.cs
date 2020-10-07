@@ -21,6 +21,7 @@ using SkyPayment.Core.Entities;
 using SkyPayment.Core.Mongo;
 using SkyPayment.Infrastructure;
 using SkyPayment.Mappings;
+using SkyPayment.Personnel.API.Hub;
 using SkyPayment.Repository;
 
 namespace SkyPayment.Personnel.API
@@ -37,7 +38,9 @@ namespace SkyPayment.Personnel.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllers();
+            services.AddSignalR();
             services.Configure<Settings>(Configuration);
             services.AddRepositories(typeof(BaseEntity));
             services.AddServices();
@@ -82,7 +85,11 @@ namespace SkyPayment.Personnel.API
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHub<PersonnelHub>("/personnelHub");
+            });
         }
     }
 }
