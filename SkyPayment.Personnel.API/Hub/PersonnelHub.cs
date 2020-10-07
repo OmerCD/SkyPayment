@@ -17,7 +17,7 @@ namespace SkyPayment.Personnel.API.Hub
         public async Task Deneme(string metin)
         {
             /* bir test metodu. Giden veri görünüyor mu? */
-            await Clients.All.SendAsync("DenemeMesajı", metin);
+            await Clients.All.SendAsync("DenemeMesajı", "metin");
         }
     }
 }
