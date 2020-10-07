@@ -9,6 +9,10 @@ export class AuthRequests extends BaseRequests{
         const response = await axios.post(this.baseAddress+'login',{userName,password});
         return response;
     }
+    async register(registerInfo){
+        const response = await axios.post(this.baseAddress+'register',registerInfo);
+        return response;
+    }
     async testManagementAuthentication(){
         const response = await this.axios.get('login/test/management');
         return response.status === 200;

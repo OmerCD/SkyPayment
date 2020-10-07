@@ -18,3 +18,11 @@
     margin: 16px;
     color: red;
 }
+@media only screen and (max-width: 600px) {
+    body {
+        background-color: lightblue;
+    }
+    .login-border{
+        width: 70%;
+    }
+}

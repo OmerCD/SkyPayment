@@ -17,6 +17,11 @@ class AuthenticationService {
 
     }
 
+    async register(registerInfo){
+        const result = await this.authRequestManager.register(registerInfo);
+        return result;
+    }
+
     async testManagementToken(){
         return await this.authRequestManager.testManagementAuthentication();
     }
