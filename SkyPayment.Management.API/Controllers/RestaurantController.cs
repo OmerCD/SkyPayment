@@ -44,6 +44,14 @@ namespace SkyPayment.API.Controllers
             var response = await _mediator.Send(query);
             return response.ToActionResult();
         }
+
+        [HttpDelete("{restaurantId}")]
+        public async Task<IActionResult> DeleteRestaurant(string restaurantId)
+        {
+            var managementUserId = User.GetManagementUserId();
+            var command = new DeleteRestaurantCommand(managementUserId, restaurantId);
+            return (await _mediator.Send(command)).ToActionResult();
+        }
         [HttpPost]
         public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantRequestModel createRestaurantRequestModel)
         {

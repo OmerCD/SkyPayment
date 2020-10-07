@@ -46,5 +46,22 @@ namespace SkyPayment.Infrastructure.Services
         {
             return _managementUserRepository.FindById(userId).Restaurants;
         }
+
+        public bool DeleteRestaurant(string managementUserId, string restaurantId)
+        {
+            var foundManager = _managementUserRepository.FindById(managementUserId);
+
+            var foundRestaurant = foundManager?.Restaurants.FirstOrDefault(x => x.Id == restaurantId);
+            if (foundRestaurant == null)
+            {
+                return false;
+            }
+
+            foundManager.Restaurants.Remove(foundRestaurant);
+            _managementUserRepository.UpdateOne(foundManager,
+                Builders<ManagementUser>.Update.Set(nameof(foundManager.Restaurants), foundManager.Restaurants));
+
+            return true;
+        }
     }
 }

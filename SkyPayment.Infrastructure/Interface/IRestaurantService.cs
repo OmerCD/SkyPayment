@@ -9,5 +9,6 @@ namespace SkyPayment.Infrastructure.Interface
         public Restaurant CreateRestaurant(Restaurant restaurant);
         Restaurant GetById(string managementUserId, string restaurantId);
         IEnumerable<Restaurant> GetManagementUserRestaurants(string userId);
+        bool DeleteRestaurant(string managementUserId, string restaurantId);
     }
 }
