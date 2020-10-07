@@ -9,6 +9,10 @@
         public string FaxNumber { get; set; }
         public string Email { get; set; }
         public string Website { get; set; }
-      //  public ICollection<MenuItemTag> AvailableTags { get; set; }
+
+        public int TableCount { get; set; }
+
+        public string Link { get; set; }
+        //  public ICollection<MenuItemTag> AvailableTags { get; set; }
     }
 }

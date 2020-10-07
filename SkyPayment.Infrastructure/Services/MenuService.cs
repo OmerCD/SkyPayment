@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 using SkyPayment.Contract.RequestModel;
 using SkyPayment.Contract.ResponseModel;
 using SkyPayment.Core.Entities;
@@ -13,7 +17,8 @@ namespace SkyPayment.Infrastructure.Services
     public class MenuService:IMenuService
     {
         private readonly IRepository<Menu> _menuRepository;
-
+        private readonly IRepository<ManagementUser> _managementUserRepository;
+      
         public MenuService(IRepository<Menu> menuRepository)
         {
             _menuRepository = menuRepository;
@@ -36,13 +41,45 @@ namespace SkyPayment.Infrastructure.Services
             };
             return createMenuResponse;
         }
+        
+        
 
-        public IEnumerable<MenuResponseModel> GetAll()
+        public IEnumerable<Menu> GetAll(string id)
         {
-            return _menuRepository.AsQueryable().Select(x=> new MenuResponseModel
+            var menus = _managementUserRepository.FindById(id).Restaurants.Select(x => x.Menus);
+            if (!menus.Any())
             {
-                Name = x.Name
-            });
+                foreach (var menu in menus)
+                {
+                    return menu;
+                }
+            }
+            return null;
+        }
+
+        public Menu Create(Menu menuCreate)
+        {
+            var managementUser = _managementUserRepository.FindOne(x => x.Id == menuCreate.ManagementUserId);
+            foreach (var userRestaurantMenu in managementUser.Restaurants)
+            {
+                userRestaurantMenu.Menus.Add(menuCreate);
+            }
+            _managementUserRepository.UpdateOne(managementUser,Builders<ManagementUser>.Update.Set(nameof(managementUser.Restaurants),managementUser.Restaurants));
+            return menuCreate;
+        }
+        
+        public Menu GetById(string managementUserId, string menuId)
+        {
+            var managementUser = _managementUserRepository.FindById(managementUserId);
+            if (managementUser!=null)
+            {
+                foreach (var restaurant in managementUser.Restaurants)
+                {
+                    return restaurant.Menus.FirstOrDefault(x => x.Id == menuId);
+                }
+            }
+
+            return null;
         }
     }
 }
