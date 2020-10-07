@@ -6,5 +6,6 @@ namespace SkyPayment.Core.Entities
     {
         public string Name { get; set; }
         public ICollection<MenuItem> Items { get; set; }
+        public string ManagementUserId { get; set; }
     }
 }
