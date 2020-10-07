@@ -12,12 +12,10 @@ namespace SkyPayment.Personnel.API.Controllers
     [Route("api/[controller]")]
     public class LoginController : ControllerBase
     {
-        private readonly Settings _settings;
         private readonly IMediator _mediator;
 
-        public LoginController(Settings settings, IMediator mediator)
+        public LoginController(IMediator mediator)
         {
-            _settings = settings;
             _mediator = mediator;
         }
 

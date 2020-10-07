@@ -1,21 +1,28 @@
 import React from "react";
 import {Button, Icon, Table} from "semantic-ui-react";
+import {useAppSettings} from "../../context/AppSettingsContext";
 
 function ListRestaurant({restaurants, onAddRestaurant, onEditRestaurant, onDeleteRestaurant}) {
     console.log(restaurants);
+    const tableHeight = `calc(100vh - ${useAppSettings().navbarHeight})`
+    const TableCell = ({children}) => (
+        <Table.Cell style={{height:'54px'}}>
+            {children}
+        </Table.Cell>
+    )
     const mapped = restaurants.map(restaurant => (
         <Table.Row key={restaurant.id}>
-            <Table.Cell>{restaurant.name}</Table.Cell>
-            <Table.Cell>{restaurant.address}</Table.Cell>
-            <Table.Cell>{restaurant.personnelCount}</Table.Cell>
-            <Table.Cell>
+            <TableCell>{restaurant.name}</TableCell>
+            <TableCell>{restaurant.address}</TableCell>
+            <TableCell>{restaurant.personnelCount}</TableCell>
+            <TableCell>
                 <Button onClick={()=>onEditRestaurant(restaurant.id)} primary>Düzenle</Button>
                 <Button onClick={()=>onDeleteRestaurant(restaurant.id)} negative>Sil</Button>
-            </Table.Cell>
+            </TableCell>
         </Table.Row>
     ))
     return (
-        <Table inverted style={{marginTop:0, borderRadius:0}}>
+        <Table striped celled inverted size={"large"} style={{marginTop:0, borderRadius:0, height:tableHeight}}>
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell>İsim</Table.HeaderCell>

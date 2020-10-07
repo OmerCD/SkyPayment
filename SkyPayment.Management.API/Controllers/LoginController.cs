@@ -46,7 +46,5 @@ namespace SkyPayment.API.Controllers
             var response = await _mediator.Send(query);
             return response.ToActionResult();
         }
-  
-       
     }
 }

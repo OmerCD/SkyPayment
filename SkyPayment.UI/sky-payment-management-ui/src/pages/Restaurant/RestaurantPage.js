@@ -7,26 +7,22 @@ import EditRestaurant from "../../components/restaurant/EditRestaurant";
 import RestaurantService from "../../services/RestaurantService";
 
 function RestaurantPage() {
-    const [restaurants, setRestaurants] = useState([{
-        id: 'testId',
-        name: 'TestRestaurant',
-        address: 'Bad Address',
-        personnelCount: 15
-    }]);
+    const [restaurants, setRestaurants] = useState([]);
     const [restaurantModalState, setRestaurantModalState] = useState({
         open: false,
         header: '',
         selectedRestaurant: {},
-        onSubmit: () => {}
+        onSubmit: () => {
+        }
     });
 
     const restaurantService = new RestaurantService();
 
-    useEffect(()=>{
+    useEffect(() => {
         restaurantService.getAll().then(response => {
             setRestaurants(response);
         })
-    },[])
+    }, [])
 
     const onRestaurantAdd = () => {
         setRestaurantModalState({
@@ -38,10 +34,13 @@ function RestaurantPage() {
             },
             onSubmit: (restaurant) => {
                 restaurantService.addRestaurant(restaurant).then(result => {
-                    if (result){
-                        setRestaurantModalState({...restaurantModalState, open: false});
-                    }
-                    else{
+                    console.log(result)
+                    if (result) {
+                        restaurantService.getAll().then(response => {
+                            setRestaurants(response);
+                            setRestaurantModalState({...restaurantModalState, open: false});
+                        })
+                    } else {
                         alert("Error")
                     }
                 })
@@ -68,7 +67,14 @@ function RestaurantPage() {
         })
     }
     const onRestaurantDelete = (id) => {
-
+        restaurantService.deleteRestaurant(id).then(success => {
+            if (success) {
+                restaurantService.getAll().then(response => {
+                        setRestaurants(response);
+                    }
+                )
+            }
+        })
     }
     return (
         <>

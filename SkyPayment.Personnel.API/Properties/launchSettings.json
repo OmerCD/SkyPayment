@@ -32,6 +32,14 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Local"
       }
+    },
+    "SkyPayment.Personnel.API Work": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "applicationUrl": "http://10.100.0.103:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Work"
+      }
     }
   }
 }

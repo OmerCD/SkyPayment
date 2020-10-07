@@ -17,4 +17,7 @@ export default class RestaurantRequests extends BaseRequests{
     editRestaurant(restaurant){
         return this.axios.put(this.baseController, restaurant);
     }
+    deleteRestaurant(restaurantId){
+        return this.axios.delete(this.baseController+'/'+restaurantId);
+    }
 }
