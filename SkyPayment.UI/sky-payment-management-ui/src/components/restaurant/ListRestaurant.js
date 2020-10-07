@@ -22,7 +22,7 @@ function ListRestaurant({restaurants, onAddRestaurant, onEditRestaurant, onDelet
         </Table.Row>
     ))
     return (
-        <Table striped celled inverted size={"large"} style={{marginTop:0, borderRadius:0, height:tableHeight}}>
+        <Table striped celled inverted size={"large"} style={{marginTop:0, borderRadius:0}}>
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell>İsim</Table.HeaderCell>
