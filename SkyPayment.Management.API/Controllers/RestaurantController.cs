@@ -54,7 +54,8 @@ namespace SkyPayment.API.Controllers
             var command = new CreateRestaurantCommand(createRestaurantRequestModel.Name,
                 createRestaurantRequestModel.Address, createRestaurantRequestModel.PhoneNumber,
                 createRestaurantRequestModel.FaxNumber,
-                createRestaurantRequestModel.Email, createRestaurantRequestModel.Website,  claimsIdentity?.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+                createRestaurantRequestModel.Email, createRestaurantRequestModel.Website,  
+                claimsIdentity?.FindFirst(ClaimTypes.NameIdentifier)?.Value,createRestaurantRequestModel.TableCount,createRestaurantRequestModel.Link);
             var response = await _mediator.Send(command);
             return response.ToActionResult();
         }

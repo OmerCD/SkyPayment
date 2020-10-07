@@ -33,7 +33,7 @@ namespace SkyPayment.Domain.Handlers
             return Task.FromResult<BaseResponseModel>(new BaseResponseModel
             {
                 Description = "Menu bilgisi",
-                StatusCode = 201,
+                StatusCode = 200,
                 Data = _mapper.Map<GetRestaurantByIdResponseModel>(menuById)
             });
         }

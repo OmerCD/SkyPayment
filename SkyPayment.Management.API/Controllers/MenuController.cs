@@ -39,7 +39,7 @@ namespace SkyPayment.API.Controllers
             var managementUserId = User.GetManagementUserId();
             var query = new GetAllMenuQueries(managementUserId);
             var send = await _mediator.Send(query);
-            return Ok(send);
+            return send.ToActionResult();
         }
         
      
