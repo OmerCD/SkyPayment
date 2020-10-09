@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SkyPayment.API.Helper;
 using SkyPayment.Contract.RequestModel;
@@ -16,6 +17,7 @@ namespace SkyPayment.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class RestaurantController : ControllerBase
     {
         private readonly IMediator _mediator;

@@ -16,10 +16,10 @@ function EditRestaurant({restaurant, onSubmit}) {
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Field>
-                <input name={"name"} placeholder={"Restoran Adı"} value={restaurant?.name}/>
+                <input name={"name"} placeholder={"Restoran Adı"} defaultValue={restaurant?.name}/>
             </Form.Field>
             <Form.Field>
-                <input type={"number"} name={"tableCount"} placeholder={"Masa Sayısı"} value={restaurant?.tableCount}/>
+                <input type={"number"} name={"tableCount"} placeholder={"Masa Sayısı"} defaultValue={restaurant?.tableCount}/>
             </Form.Field>
             <Form.Button type={'submit'}>Onayla</Form.Button>
         </Form>

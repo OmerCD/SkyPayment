@@ -27,7 +27,7 @@ function Navbar(props) {
         authService.logout();
     }
     return (
-        <Segment inverted style={{height: navbarHeight, marginBottom: 0, borderRadius:0, paddingTop:'2px'}}>
+        <Segment inverted style={{height: navbarHeight, marginBottom: 0, borderRadius: 0, paddingTop: '2px'}}>
             <Menu inverted pointing secondary size={"small"}>
                 <Menu.Item
                     to='/'
@@ -49,6 +49,13 @@ function Navbar(props) {
                     active={location.startsWith('/menus')}
                     onClick={changeLocation}>
                     Menüler
+                </Menu.Item>
+                <Menu.Item
+                    to='/personnels/list'
+                    name='personnels'
+                    active={location.startsWith('/personnels')}
+                    onClick={changeLocation}>
+                    Personeller
                 </Menu.Item>
                 <Menu.Menu position={"right"}>
                     <Menu.Item>

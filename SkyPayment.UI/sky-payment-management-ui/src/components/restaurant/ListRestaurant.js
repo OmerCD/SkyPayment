@@ -2,11 +2,11 @@ import React from "react";
 import {Button, Icon, Table} from "semantic-ui-react";
 import {useAppSettings} from "../../context/AppSettingsContext";
 
-function ListRestaurant({restaurants, onAddRestaurant, onEditRestaurant, onDeleteRestaurant}) {
+function ListRestaurant({restaurants, onAddRestaurant, onEditRestaurant, onDeleteRestaurant, onMenusClick, onPersonnelClick, onDetailClick}) {
     console.log(restaurants);
     const tableHeight = `calc(100vh - ${useAppSettings().navbarHeight})`
     const TableCell = ({children}) => (
-        <Table.Cell style={{height:'54px'}}>
+        <Table.Cell style={{height: '54px'}}>
             {children}
         </Table.Cell>
     )
@@ -16,13 +16,16 @@ function ListRestaurant({restaurants, onAddRestaurant, onEditRestaurant, onDelet
             <TableCell>{restaurant.address}</TableCell>
             <TableCell>{restaurant.personnelCount}</TableCell>
             <TableCell>
-                <Button onClick={()=>onEditRestaurant(restaurant.id)} primary>Düzenle</Button>
-                <Button onClick={()=>onDeleteRestaurant(restaurant.id)} negative>Sil</Button>
+                <Button onClick={() => onEditRestaurant(restaurant.id)} primary>Düzenle</Button>
+                <Button onClick={() => onDeleteRestaurant(restaurant.id)} negative>Sil</Button>
+                <Button onClick={() => onMenusClick(restaurant.id)} color={"facebook"}>Menüler</Button>
+                <Button onClick={() => onPersonnelClick(restaurant.id)} color={"google plus"}>Personeller</Button>
+                <Button onClick={() => onDetailClick(restaurant.id)} color={"linkedin"}>Detay</Button>
             </TableCell>
         </Table.Row>
     ))
     return (
-        <Table striped celled inverted size={"large"} style={{marginTop:0, borderRadius:0}}>
+        <Table striped celled inverted size={"large"} style={{marginTop: 0, borderRadius: 0}}>
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell>İsim</Table.HeaderCell>
