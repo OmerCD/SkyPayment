@@ -37,14 +37,14 @@ function Navbar(props) {
                     Ana Sayfa
                 </Menu.Item>
                 <Menu.Item
-                    to='/restaurants/list'
+                    to='/restaurants'
                     name='restaurants'
                     active={location.startsWith('/restaurants')}
                     onClick={changeLocation}>
                     Restoranlarım
                 </Menu.Item>
                 <Menu.Item
-                    to='/menus/list'
+                    to='/menus'
                     name='menus'
                     active={location.startsWith('/menus')}
                     onClick={changeLocation}>

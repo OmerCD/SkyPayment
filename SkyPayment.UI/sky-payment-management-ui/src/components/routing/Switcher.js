@@ -6,27 +6,27 @@ import AuthenticationService from "../../services/AuthenticationService";
 import Homepage from "../../pages/Home/HomePage";
 import RestaurantPage from "../../pages/Restaurant/RestaurantPage";
 import AddRestaurantPage from "../../pages/Restaurant/AddRestaurantPage";
+import MenusPage from "../../pages/Menus/MenusPage";
 
 function Switcher() {
     const authenticationService = new AuthenticationService(useAuth());
     const token = authenticationService.getToken();
     let content;
-    if(token){
+    if (token) {
         content = (
             <>
                 <Route exact path='/'>
                     <Homepage/>
                 </Route>
-                <Route path='/restaurants/list'>
+                <Route path='/restaurants'>
                     <RestaurantPage/>
                 </Route>
-                <Route path='/menus/list'>
-
+                <Route path='/menus'>
+                    <MenusPage/>
                 </Route>
             </>
         )
-    }
-    else{
+    } else {
         content = (
             <Route path='/'>
                 <LoginPage/>

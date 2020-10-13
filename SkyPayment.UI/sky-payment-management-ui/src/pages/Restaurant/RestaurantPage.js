@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {Modal} from "semantic-ui-react";
-import {Route, Switch} from "react-router-dom";
+import {Redirect, Route, Switch,useHistory} from "react-router-dom";
 import AddRestaurantPage from "./AddRestaurantPage";
 import ListRestaurant from "../../components/restaurant/ListRestaurant";
 import EditRestaurant from "../../components/restaurant/EditRestaurant";
 import RestaurantService from "../../services/RestaurantService";
+import RestaurantDetail from "../../components/restaurant/detail/RestaurantDetail";
 
 function RestaurantPage() {
     const [restaurants, setRestaurants] = useState([]);
@@ -15,6 +16,7 @@ function RestaurantPage() {
         onSubmit: () => {
         }
     });
+    const history = useHistory();
 
     const restaurantService = new RestaurantService();
 
@@ -22,7 +24,7 @@ function RestaurantPage() {
         restaurantService.getAll().then(response => {
             setRestaurants(response);
         })
-    }, [])
+    }, []);
 
     const onRestaurantAdd = () => {
         setRestaurantModalState({
@@ -76,21 +78,32 @@ function RestaurantPage() {
             }
         })
     }
+    const onRestaurantDetailsClicked = (id) => {
+        if (id){
+            history.push("/restaurants/"+id);
+        }
+    }
     return (
         <>
             <Switch>
+                <Redirect from="/restaurants" to='/restaurants/list'
+                    exact
+                />
                 <Route path='/restaurants/list'>
                     <ListRestaurant
                         restaurants={restaurants}
                         onAddRestaurant={onRestaurantAdd}
                         onDeleteRestaurant={onRestaurantDelete}
                         onEditRestaurant={onRestaurantEdit}
+                        onDetailClick={onRestaurantDetailsClicked}
+                        detailRedirectTo={'/restaurants/'}
                     />
                     <RestaurantModal {...restaurantModalState}/>
                 </Route>
                 <Route path='/restaurants/addRestaurant'>
                     <AddRestaurantPage/>
                 </Route>
+                <Route path='/restaurants/:id' component={RestaurantDetail}/>
             </Switch>
         </>
     )

@@ -36,7 +36,7 @@
     "SkyPayment.Management.API Work": {
       "commandName": "Project",
       "launchBrowser": false,
-      "applicationUrl": "http://10.100.0.103:5000",
+      "applicationUrl": "http://10.100.0.113:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Work"
       }

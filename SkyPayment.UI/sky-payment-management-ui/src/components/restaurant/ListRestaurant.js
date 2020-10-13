@@ -1,9 +1,8 @@
 import React from "react";
-import {Button, Icon, Table} from "semantic-ui-react";
+import {Button, Icon, Menu, Segment, Table} from "semantic-ui-react";
 import {useAppSettings} from "../../context/AppSettingsContext";
 
 function ListRestaurant({restaurants, onAddRestaurant, onEditRestaurant, onDeleteRestaurant, onMenusClick, onPersonnelClick, onDetailClick}) {
-    console.log(restaurants);
     const tableHeight = `calc(100vh - ${useAppSettings().navbarHeight})`
     const TableCell = ({children}) => (
         <Table.Cell style={{height: '54px'}}>
@@ -11,16 +10,16 @@ function ListRestaurant({restaurants, onAddRestaurant, onEditRestaurant, onDelet
         </Table.Cell>
     )
     const mapped = restaurants.map(restaurant => (
-        <Table.Row key={restaurant.id}>
+        <Table.Row key={restaurant.id} >
             <TableCell>{restaurant.name}</TableCell>
             <TableCell>{restaurant.address}</TableCell>
             <TableCell>{restaurant.personnelCount}</TableCell>
             <TableCell>
-                <Button onClick={() => onEditRestaurant(restaurant.id)} primary>Düzenle</Button>
-                <Button onClick={() => onDeleteRestaurant(restaurant.id)} negative>Sil</Button>
-                <Button onClick={() => onMenusClick(restaurant.id)} color={"facebook"}>Menüler</Button>
-                <Button onClick={() => onPersonnelClick(restaurant.id)} color={"google plus"}>Personeller</Button>
-                <Button onClick={() => onDetailClick(restaurant.id)} color={"linkedin"}>Detay</Button>
+                {/*<Button style={{width:'125px'}} onClick={() => onEditRestaurant(restaurant.id)} primary>Düzenle</Button>*/}
+                {/*<Button style={{width:'125px'}} onClick={() => onMenusClick(restaurant.id)} color={"facebook"}>Menüler</Button>*/}
+                {/*<Button style={{width:'125px'}} onClick={() => onPersonnelClick(restaurant.id)} color={"google plus"}>Personeller</Button>*/}
+                <Button style={{width:'125px'}} onClick={() => onDetailClick(restaurant.id)} color={"linkedin"}>Detay</Button>
+                <Button style={{width:'125px'}} onClick={() => onDeleteRestaurant(restaurant.id)} negative>Sil</Button>
             </TableCell>
         </Table.Row>
     ))
