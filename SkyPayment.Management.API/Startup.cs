@@ -43,6 +43,7 @@ namespace SkyPayment.API
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddScoped<SkyPaymentContext>(x =>
                 new SkyPaymentContext(x.GetRequiredService<IOptions<Settings>>().Value));
+            services.AddSwaggerGen();
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("PersonnelRole", builder => builder.RequireRole("Management","Personnel"));
@@ -81,6 +82,12 @@ namespace SkyPayment.API
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SkyPayment");
+            });
         }
     }
 }

@@ -13,6 +13,7 @@ namespace SkyPayment.Core.Entities
         public string Email { get; set; }
         public string NormalizedUserName { get; set; }
         public ICollection<Restaurant> Restaurants { get; set; } = new List<Restaurant>();
+        public ICollection<Menu> ManagementMenus { get; set; } = new List<Menu>();
         [BsonIgnore] public string FullName => $"{Name} {LastName}";
     }
 }

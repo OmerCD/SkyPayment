@@ -31,6 +31,7 @@ namespace SkyPayment.Domain.Handlers.AuthenticationHandlers
 
         public Task<BaseResponseModel> Handle(ManagementLoginQuery request, CancellationToken cancellationToken)
         {
+            request.UserName = "Sema";
             var managementUser = _managementAuthenticationService.GetManagementUser(request.UserName);
             if (managementUser != null)
             {

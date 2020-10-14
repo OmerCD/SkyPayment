@@ -6,6 +6,7 @@ using SkyPayment.API.Helper;
 using SkyPayment.Contract.RequestModel;
 using SkyPayment.Contract.ResponseModel;
 using SkyPayment.Core.Entities;
+using SkyPayment.Domain.Command;
 using SkyPayment.Domain.Commands.MenuCommand;
 using SkyPayment.Domain.Helpers;
 using SkyPayment.Domain.Queries;
@@ -25,10 +26,10 @@ namespace SkyPayment.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateMenu(CreateMenuRequestModel menuRequest)
+        public async Task<IActionResult> CreateMenu([FromBody]CreateMenuRequestModel menuRequest)
         {
             var managementUserId = User.GetManagementUserId();
-            var command = new MenuCreateCommand(menuRequest.Name, menuRequest.Type, menuRequest.CreateDateTime, managementUserId);
+            var command = new MenuCreateCommand(menuRequest.Name, menuRequest.CreateDateTime, managementUserId);
             var response = await _mediator.Send(command);
             return response.ToActionResult();
         }
@@ -50,6 +51,15 @@ namespace SkyPayment.API.Controllers
             var query=new GetByIdMenuQuery(managementUserId,menuId);
             var response = await _mediator.Send(query);
             return response.ToActionResult();
+        }
+        [HttpDelete("{menuId}")]
+        public async Task<IActionResult> DeleteRestaurant(string menuId)
+        {
+            // var managementUserId = User.GetManagementUserId();
+            // var command = new DeleteRestaurantCommand(managementUserId, restaurantId);
+            // return (await _mediator.Send(command)).ToActionResult();
+            var managementUserId = User.GetManagementUserId();
+            return Ok();
         }
     }
 }

@@ -23,10 +23,11 @@ namespace SkyPayment.Domain.Handlers
             var menu = _menuService.Create(new Menu
             {
                 Id = ObjectId.GenerateNewId().ToString(),
-                Name = request.Type,
+                Name = request.Name,
                 ManagementUserId = request.ManagementUserId,
                 CreateDate = DateTime.Now
             });
+
             if (menu != null)
             {
                 return Task.FromResult<BaseResponseModel>(new BaseResponseModel()
