@@ -59,9 +59,7 @@ namespace SkyPayment.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantRequestModel createRestaurantRequestModel)
         {
-            // var command = new ManagementUserRegisterCommand(registerModel.Email,registerModel.Name,registerModel.Password, registerModel.LastName, registerModel.UserName);
-            // var response = await _mediator.Send(command);
-            // return response.ToActionResult();
+         
             var claimsIdentity = User.Identity as ClaimsIdentity;
             var command = new CreateRestaurantCommand(createRestaurantRequestModel.Name,
                 createRestaurantRequestModel.Address, createRestaurantRequestModel.PhoneNumber,

@@ -5,7 +5,7 @@ using SkyPayment.Core.Entities;
 
 namespace SkyPayment.Infrastructure.Interface
 {
-    public interface IUserMenuService
+    public interface IGeneralMenuService : IService
     {
         public IEnumerable<Menu> GetAll(string id);
         Menu Create(Menu menuCreate);

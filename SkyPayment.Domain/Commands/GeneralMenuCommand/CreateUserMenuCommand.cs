@@ -8,12 +8,11 @@ namespace SkyPayment.Domain.Commands.UserMenuCommand
     {
         public string Name { get; set; }
         public string Type { get; set; }
-        public DateTime CreateDateTime { get; set; }
         public string ManagementUserId { get; set; }
-        public CreateUserMenuCommand(string name, DateTime dateTime, string managementUserId)
+        public CreateUserMenuCommand(string name, string managementUserId,string type)
         {
             Name = name;
-            CreateDateTime = dateTime;
+            Type = type;
             ManagementUserId = managementUserId;
         }
     }

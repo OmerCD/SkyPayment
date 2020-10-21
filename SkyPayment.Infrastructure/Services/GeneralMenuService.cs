@@ -8,12 +8,12 @@ using SkyPayment.Repository.Interfaces;
 
 namespace SkyPayment.Infrastructure.Services
 {
-    public class UserMenuService : IUserMenuService
+    public class GeneralMenuService : IGeneralMenuService
     {
         private readonly IRepository<ManagementUser> _managementUserRepository;
         private readonly IRepository<Menu> _menuRepository;
 
-        public UserMenuService(IRepository<ManagementUser> managementUserRepository, IRepository<Menu> menuRepository)
+        public GeneralMenuService(IRepository<ManagementUser> managementUserRepository, IRepository<Menu> menuRepository)
         {
             _managementUserRepository = managementUserRepository;
             _menuRepository = menuRepository;
