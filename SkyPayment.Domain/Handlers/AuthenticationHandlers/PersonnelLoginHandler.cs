@@ -9,7 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using SkyPayment.Contract.ResponseModel;
 using SkyPayment.Contract.ResponseModel.Authentication;
 using SkyPayment.Core;
-using SkyPayment.Domain.Queries.AuthenticationQueries;
+using SkyPayment.Domain.CQ.Queries.AuthenticationQueries;
 using SkyPayment.Infrastructure.Services;
 
 namespace SkyPayment.Domain.Handlers.AuthenticationHandlers

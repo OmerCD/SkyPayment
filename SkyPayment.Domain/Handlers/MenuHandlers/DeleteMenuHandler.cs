@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using SkyPayment.Contract.ResponseModel;
-using SkyPayment.Domain.Commands.MenuCommand;
+using SkyPayment.Domain.CQ.Commands.MenuCommand;
 using SkyPayment.Infrastructure.Interface;
 
 namespace SkyPayment.Domain.Handlers

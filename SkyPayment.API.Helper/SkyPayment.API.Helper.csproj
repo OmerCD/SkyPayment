@@ -5,12 +5,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="MediatR" Version="9.0.0" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\SkyPayment.Contract\SkyPayment.Contract.csproj" />
+      <ProjectReference Include="..\SkyPayment.Domain.CQ\SkyPayment.Domain.CQ.csproj" />
     </ItemGroup>
 
 </Project>

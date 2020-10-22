@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using SkyPayment.Core.BindingModel;
 using SkyPayment.Core.Entities;
 using SkyPayment.Repository.Interfaces;
@@ -23,6 +26,11 @@ namespace SkyPayment.Infrastructure.Services
         public PersonnelUser CreatePersonnelUser(PersonnelBindingModel model)
         {
             return _repository.InsertOne(Build(model));
+        }
+
+        public IEnumerable<PersonnelUser> GetPersonnels(Expression<Func<PersonnelUser, bool>> whereClause)
+        {
+            return _repository.AsQueryable().Where(whereClause).AsEnumerable();
         }
 
         private PersonnelUser Build(PersonnelBindingModel model)

@@ -5,7 +5,7 @@ using MediatR;
 using MongoDB.Bson;
 using SkyPayment.Contract.ResponseModel;
 using SkyPayment.Core.Entities;
-using SkyPayment.Domain.Command;
+using SkyPayment.Domain.CQ.Commands.RestaurantCommand;
 using SkyPayment.Infrastructure.Interface;
 using SkyPayment.Infrastructure.Services;
 

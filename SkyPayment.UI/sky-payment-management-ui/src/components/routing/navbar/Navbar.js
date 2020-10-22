@@ -51,7 +51,7 @@ function Navbar(props) {
                     Menüler
                 </Menu.Item>
                 <Menu.Item
-                    to='/personnels/list'
+                    to='/personnels'
                     name='personnels'
                     active={location.startsWith('/personnels')}
                     onClick={changeLocation}>

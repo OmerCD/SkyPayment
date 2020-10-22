@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using MediatR;
 using SkyPayment.Contract.ResponseModel;
 using SkyPayment.Core.Entities;
-using SkyPayment.Domain.Queries;
+using SkyPayment.Domain.CQ.Queries;
 using SkyPayment.Infrastructure.Interface;
 using SkyPayment.Infrastructure.Services;
 

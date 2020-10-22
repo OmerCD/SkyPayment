@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SkyPayment.Contract.RequestModel;
-using SkyPayment.Domain.Commands.UserMenuCommand;
+using SkyPayment.Domain.CQ.Commands.GeneralMenuCommand;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

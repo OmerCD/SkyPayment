@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SkyPayment.API.Helper;
 using SkyPayment.Contract.RequestModel;
 using SkyPayment.Core;
-using SkyPayment.Domain.Queries.AuthenticationQueries;
+using SkyPayment.Domain.CQ.Queries.AuthenticationQueries;
 
 namespace SkyPayment.Personnel.API.Controllers
 {

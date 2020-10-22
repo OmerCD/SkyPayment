@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using SkyPayment.Contract.ResponseModel;
 using SkyPayment.Core.Entities;
-using SkyPayment.Domain.Commands.MenuCommand;
+using SkyPayment.Domain.CQ.Commands.MenuCommand;
 using SkyPayment.Infrastructure.Interface;
 
 namespace SkyPayment.Domain.Handlers

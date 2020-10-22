@@ -8,10 +8,12 @@ namespace SkyPayment.Infrastructure.Services
     public class ManagementAuthenticationService :IManagementAuthenticationService
     {
         private readonly IRepository<ManagementUser> _managementUserRepository;
+        private readonly IRepository<PersonnelUser> _personnelUserRepository;
 
-        public ManagementAuthenticationService(IRepository<ManagementUser> managementUserRepository)
+        public ManagementAuthenticationService(IRepository<ManagementUser> managementUserRepository, IRepository<PersonnelUser> personnelUserRepository)
         {
             _managementUserRepository = managementUserRepository;
+            _personnelUserRepository = personnelUserRepository;
         }
 
         public ManagementUser GetManagementUser(string userName)
@@ -23,6 +25,11 @@ namespace SkyPayment.Infrastructure.Services
         public ManagementUser CreateManagementUser(ManagementBindingModel managementBindingModel)
         {
            return _managementUserRepository.InsertOne(Build(managementBindingModel));
+        }
+
+        public PersonnelUser CreatePersonnelUser(PersonnelUser personnelUser)
+        {
+            return _personnelUserRepository.InsertOne(personnelUser);
         }
 
         private ManagementUser Build(ManagementBindingModel managementBindingModel)

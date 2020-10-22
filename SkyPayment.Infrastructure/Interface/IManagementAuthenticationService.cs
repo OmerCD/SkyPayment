@@ -9,5 +9,6 @@ namespace SkyPayment.Infrastructure.Services
         public ManagementUser GetManagementUser(string userName);
 
         ManagementUser CreateManagementUser(ManagementBindingModel managementBindingModel);
+        PersonnelUser CreatePersonnelUser(PersonnelUser personnelUser);
     }
 }

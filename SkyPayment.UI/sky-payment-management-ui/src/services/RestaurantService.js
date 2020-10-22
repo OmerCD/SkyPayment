@@ -8,6 +8,10 @@ class RestaurantService {
         const response = await this.restaurantRequests.getUserRestaurants();
         return response.data;
     }
+    async getForDisplay(){
+        const response = await this.restaurantRequests.getUserRestaurantsForDisplay();
+        return response.data;
+    }
     async getById(restaurantId){
         const response = await this.restaurantRequests.getRestaurant(restaurantId)
         return response.data;
@@ -23,7 +27,7 @@ class RestaurantService {
 
     async deleteRestaurant(restaurantId){
         const response = await this.restaurantRequests.deleteRestaurant(restaurantId)
-        return response.status === 201;
+        return response.status === 200;
     }
 }
 

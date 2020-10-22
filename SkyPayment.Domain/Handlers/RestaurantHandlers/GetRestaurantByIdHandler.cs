@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using SkyPayment.Contract.ResponseModel;
 using SkyPayment.Contract.ResponseModel.Restaurant;
-using SkyPayment.Domain.Queries.RestaurantQueries;
+using SkyPayment.Domain.CQ.Queries.RestaurantQueries;
 using SkyPayment.Infrastructure.Interface;
 using SkyPayment.Infrastructure.Services;
 

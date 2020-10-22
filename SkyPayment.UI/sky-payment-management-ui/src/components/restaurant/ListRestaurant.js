@@ -3,7 +3,7 @@ import {Button, Icon, Menu, Segment, Table} from "semantic-ui-react";
 import {useAppSettings} from "../../context/AppSettingsContext";
 
 function ListRestaurant({restaurants, onAddRestaurant, onEditRestaurant, onDeleteRestaurant, onMenusClick, onPersonnelClick, onDetailClick}) {
-    const tableHeight = `calc(100vh - ${useAppSettings().navbarHeight})`
+    // const tableHeight = `calc(100vh - ${useAppSettings().navbarHeight})`
     const TableCell = ({children}) => (
         <Table.Cell style={{height: '54px'}}>
             {children}

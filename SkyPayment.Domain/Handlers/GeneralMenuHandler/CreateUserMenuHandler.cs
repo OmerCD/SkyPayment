@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using SkyPayment.Core.Entities;
-using SkyPayment.Domain.Commands.UserMenuCommand;
+using SkyPayment.Domain.CQ.Commands.GeneralMenuCommand;
 using SkyPayment.Infrastructure.Interface;
 
 namespace SkyPayment.Domain.Handlers.UserMenuHandler

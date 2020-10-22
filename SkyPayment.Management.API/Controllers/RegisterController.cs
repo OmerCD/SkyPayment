@@ -1,9 +1,12 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SkyPayment.API.Helper;
 using SkyPayment.Contract.RequestModel;
-using SkyPayment.Domain.Commands.AuthenticationCommands;
+using SkyPayment.Contract.RequestModel.Authentication;
+using SkyPayment.Domain.CQ.Commands.AuthenticationCommands;
+using SkyPayment.Domain.Helpers;
 
 namespace SkyPayment.API.Controllers
 {
@@ -12,9 +15,11 @@ namespace SkyPayment.API.Controllers
     public class RegisterController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public RegisterController(IMediator mediator)
+        private readonly IMapper _mapper;
+        public RegisterController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
         [HttpPost]
         public async Task<IActionResult> Register([FromBody]RegisterModel registerModel)
@@ -24,5 +29,13 @@ namespace SkyPayment.API.Controllers
             return response.ToActionResult();
         }
 
+        [HttpPost("personnel")]
+        public async Task<IActionResult> RegisterPersonnel([FromBody] PersonnelRegisterCreateModel createModel)
+        {
+            var command = _mapper.Map<PersonnelUserRegisterCommand>(createModel);
+            command.ManagementUserId = User.GetManagementUserId();
+            var response = await _mediator.Send(command);
+            return response.ToActionResult();
+        }
     }
 }

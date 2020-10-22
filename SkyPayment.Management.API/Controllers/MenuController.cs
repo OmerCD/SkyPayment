@@ -6,10 +6,9 @@ using SkyPayment.API.Helper;
 using SkyPayment.Contract.RequestModel;
 using SkyPayment.Contract.ResponseModel;
 using SkyPayment.Core.Entities;
-using SkyPayment.Domain.Command;
-using SkyPayment.Domain.Commands.MenuCommand;
+using SkyPayment.Domain.CQ.Commands.MenuCommand;
+using SkyPayment.Domain.CQ.Queries.MenuQueries;
 using SkyPayment.Domain.Helpers;
-using SkyPayment.Domain.Queries;
 using SkyPayment.Infrastructure.Interface;
 using SkyPayment.Repository.Interfaces;
 

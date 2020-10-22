@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using SkyPayment.Contract.ResponseModel;
 using SkyPayment.Core.BindingModel;
-using SkyPayment.Domain.Commands.AuthenticationCommands;
+using SkyPayment.Domain.CQ.Commands.AuthenticationCommands;
 using SkyPayment.Infrastructure.Services;
 
 namespace SkyPayment.Domain.Handlers.AuthenticationHandlers
