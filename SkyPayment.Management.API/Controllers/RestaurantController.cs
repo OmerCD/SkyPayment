@@ -27,12 +27,16 @@ namespace SkyPayment.API.Controllers
             _mediator = mediator;
             _restaurantService = restaurantService;
         }
-
+        [HttpGet("test")]
+        public IActionResult Test()
+        {
+            return Ok();}
         [HttpGet]
         public async Task<IActionResult> GelAllRestaurant()
         {
             var identity = User.Identity as ClaimsIdentity;
             var value = identity?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            value = "5f801cc470771e31fb1f40c0";
             var query = new GetAllRestaurantQuery(value);
             var send = await _mediator.Send(query);
             return Ok(send); 
@@ -57,9 +61,7 @@ namespace SkyPayment.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantRequestModel createRestaurantRequestModel)
         {
-            // var command = new ManagementUserRegisterCommand(registerModel.Email,registerModel.Name,registerModel.Password, registerModel.LastName, registerModel.UserName);
-            // var response = await _mediator.Send(command);
-            // return response.ToActionResult();
+         
             var claimsIdentity = User.Identity as ClaimsIdentity;
             var command = new CreateRestaurantCommand(createRestaurantRequestModel.Name,
                 createRestaurantRequestModel.Address, createRestaurantRequestModel.PhoneNumber,

@@ -26,8 +26,8 @@ namespace SkyPayment.API.Controllers
             _settings = settings.Value;
         }
 
-        [Authorize(Policy = "ManagementRole")]
-        [HttpGet("test/management")]
+         [Authorize(Policy = "ManagementRole")]
+         [HttpGet("test/management")]
         public IActionResult TestManagementAuth()
         {
             return Ok();

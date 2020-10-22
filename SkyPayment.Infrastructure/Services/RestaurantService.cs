@@ -31,9 +31,13 @@ namespace SkyPayment.Infrastructure.Services
         {
             var managementUser = _managementUserRepository.FindOne(x => x.Id == restaurant.ManagementUserId);
             managementUser.Restaurants.Add(restaurant);
+            
+          //  _managementUserRepository.ReplaceOne(managementUser);
             _managementUserRepository.UpdateOne(managementUser,
                 Builders<ManagementUser>.Update.Set(nameof(managementUser.Restaurants), managementUser.Restaurants));
             return restaurant;
+            
+
         }
 
         public Restaurant GetById(string managementUserId, string restaurantId)

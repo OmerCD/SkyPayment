@@ -19,30 +19,11 @@ namespace SkyPayment.Infrastructure.Services
         private readonly IRepository<Menu> _menuRepository;
         private readonly IRepository<ManagementUser> _managementUserRepository;
       
-        public MenuService(IRepository<Menu> menuRepository)
+        public MenuService(IRepository<Menu> menuRepository, IRepository<ManagementUser> managementUserRepository)
         {
             _menuRepository = menuRepository;
+            _managementUserRepository = managementUserRepository;
         }
-
-        public CreateMenuResponseModel Add(CreateMenuRequestModel model)
-        {
-            var menu = new Menu
-            {
-                Name = model.Name,
-                CreateDate = DateTime.Now,
-                IsDeleted = false
-            };
-            _menuRepository.InsertOne(menu);
-            var createMenuResponse = new CreateMenuResponseModel()
-            {
-                Name = model.Name,
-                Type = model.Type,
-                CreateDateTime =DateTime.Now
-            };
-            return createMenuResponse;
-        }
-        
-        
 
         public IEnumerable<Menu> GetAll(string id)
         {
@@ -59,12 +40,19 @@ namespace SkyPayment.Infrastructure.Services
 
         public Menu Create(Menu menuCreate)
         {
-            var managementUser = _managementUserRepository.FindOne(x => x.Id == menuCreate.ManagementUserId);
+            var managementUser = _managementUserRepository.AsQueryable().First();
+              //  FindOne(x => x.Id == menuCreate.ManagementUserId);
+          
             foreach (var userRestaurantMenu in managementUser.Restaurants)
             {
+                if (userRestaurantMenu.Menus == null)
+                {
+                    userRestaurantMenu.Menus=new List<Menu>();
+                }
                 userRestaurantMenu.Menus.Add(menuCreate);
+                _managementUserRepository.UpdateOne(managementUser, Builders<ManagementUser>.Update.Set(nameof(userRestaurantMenu.Menus), userRestaurantMenu.Menus));
             }
-            _managementUserRepository.UpdateOne(managementUser,Builders<ManagementUser>.Update.Set(nameof(managementUser.Restaurants),managementUser.Restaurants));
+           
             return menuCreate;
         }
         
@@ -81,5 +69,41 @@ namespace SkyPayment.Infrastructure.Services
 
             return null;
         }
+
+        public bool DeleteMenu(string managementUserId, string menuId)
+        {
+            var foundManager = _managementUserRepository.FindById(managementUserId);
+            if (foundManager == null)
+            {
+                return false;
+            }
+            
+
+            foreach (var restaurant in foundManager.Restaurants)
+            {
+                var foundMenu = restaurant.Menus.FirstOrDefault(x=>x.Id==menuId);
+                restaurant.Menus.Remove(foundMenu);
+               // _menuRepository.UpdateOne(foundManager,Builders<ManagementUser>.Update.Set(nameof(foundManager.Restaurants.)));
+            }
+
+            return false;
+        }
+        // public bool DeleteRestaurant(string managementUserId, string restaurantId)
+        // {
+        //     var foundManager = _managementUserRepository.FindById(managementUserId);
+        //
+        //     var foundRestaurant = foundManager?.Restaurants.FirstOrDefault(x => x.Id == restaurantId);
+        //     if (foundRestaurant == null)
+        //     {
+        //         return false;
+        //     }
+        //
+        //     foundManager.Restaurants.Remove(foundRestaurant);
+        //     _managementUserRepository.UpdateOne(foundManager,
+        //         Builders<ManagementUser>.Update.Set(nameof(foundManager.Restaurants), foundManager.Restaurants));
+        //
+        //     return true;
+        // }
+        
     }
 }
