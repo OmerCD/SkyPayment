@@ -9,6 +9,7 @@ namespace SkyPayment.Mappings
         public RestaurantMappingProfile()
         {
             CreateMap<Restaurant, GetRestaurantByIdResponseModel>();
+            CreateMap<Restaurant, GetRestaurantForDisplayViewModel>();
         }
     }
 }
