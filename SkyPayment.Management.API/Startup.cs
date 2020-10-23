@@ -16,7 +16,7 @@ using SkyPayment.Infrastructure;
 using SkyPayment.Mappings;
 using SkyPayment.Repository;
 
-namespace SkyPayment.API
+namespace SkyPayment.Management.API
 {
     public class Startup
     {

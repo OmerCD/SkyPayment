@@ -10,7 +10,7 @@ using SkyPayment.Domain.CQ.Commands.GeneralMenuCommand;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace SkyPayment.API.Controllers
+namespace SkyPayment.Management.API.Controllers
 {
     [Route("api/[controller]")]
     public class GeneralMenuController : Controller

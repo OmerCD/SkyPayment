@@ -13,6 +13,7 @@ function PersonnelPage() {
     let restaurants = [];
     useEffect(() => {
         personnelService.getPersonnels().then(response => {
+            console.log(response)
             setPersonnels(response);
         });
     }, []);
@@ -22,14 +23,17 @@ function PersonnelPage() {
             history.push({pathname: '/personnels/add', state: {restaurants : response}});
         })
     }
+    const onAddPersonnelSubmit = (personnelInfo) => {
+        personnelService.createPersonnel(personnelInfo).then(response => console.log(response));
+    }
     return (
         <Switch>
             <Redirect from='/personnels' to='/personnels/list' exact/>
             <Route path='/personnels/list'>
-                <ListPersonnel personnelList={personnels} onAddPersonnel={onAddPersonnel}/>
+                <ListPersonnel personnelList={personnels} onAddPersonnel={onAddPersonnel} />
             </Route>
             <Route path='/personnels/add'>
-                <AddPersonnelPage/>
+                <AddPersonnelPage onSubmit={onAddPersonnelSubmit}/>
             </Route>
         </Switch>
     )

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SkyPayment.API.Helper;
+using SkyPayment.Management.API.Helper;
 using SkyPayment.Contract.RequestModel;
 using SkyPayment.Contract.ResponseModel;
 using SkyPayment.Core.Entities;
@@ -12,7 +12,7 @@ using SkyPayment.Domain.Helpers;
 using SkyPayment.Infrastructure.Interface;
 using SkyPayment.Repository.Interfaces;
 
-namespace SkyPayment.API.Controllers
+namespace SkyPayment.Management.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

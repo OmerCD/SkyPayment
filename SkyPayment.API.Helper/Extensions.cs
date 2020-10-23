@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using SkyPayment.Contract.ResponseModel;
 using IBaseRequest = SkyPayment.Domain.CQ.IBaseRequest;
 
-namespace SkyPayment.API.Helper
+namespace SkyPayment.Management.API.Helper
 {
     public static class Extensions
     {

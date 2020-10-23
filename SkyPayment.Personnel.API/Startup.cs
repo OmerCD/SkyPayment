@@ -78,7 +78,7 @@ namespace SkyPayment.Personnel.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3007").AllowCredentials());
             app.UseHttpsRedirection();
 
             app.UseRouting();

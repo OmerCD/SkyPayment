@@ -2,12 +2,12 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SkyPayment.API.Helper;
+using SkyPayment.Management.API.Helper;
 using SkyPayment.Domain.CQ.Queries.PersonnelQueries;
 using SkyPayment.Domain.Helpers;
 using IBaseRequest = SkyPayment.Domain.CQ.IBaseRequest;
 
-namespace SkyPayment.API.Controllers
+namespace SkyPayment.Management.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

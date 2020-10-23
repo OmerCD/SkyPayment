@@ -2,13 +2,13 @@
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SkyPayment.API.Helper;
+using SkyPayment.Management.API.Helper;
 using SkyPayment.Contract.RequestModel;
 using SkyPayment.Contract.RequestModel.Authentication;
 using SkyPayment.Domain.CQ.Commands.AuthenticationCommands;
 using SkyPayment.Domain.Helpers;
 
-namespace SkyPayment.API.Controllers
+namespace SkyPayment.Management.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

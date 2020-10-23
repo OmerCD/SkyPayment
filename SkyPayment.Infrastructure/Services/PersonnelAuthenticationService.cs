@@ -8,7 +8,7 @@ using SkyPayment.Repository.Interfaces;
 
 namespace SkyPayment.Infrastructure.Services
 {
-    public class PersonnelAuthenticationService:IPersonnelService
+    public class PersonnelAuthenticationService : IPersonnelService
     {
         private readonly IRepository<PersonnelUser> _repository;
 
@@ -46,7 +46,6 @@ namespace SkyPayment.Infrastructure.Services
                 ManagementUserId = model.ManagementUserId.Trim(),
                 NormalizedUserName = model.NormalizedUserName.Trim().ToUpper(),
                 CreateDate = DateTime.Today,
-
             };
         }
     }

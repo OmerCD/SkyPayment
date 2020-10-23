@@ -1,0 +1,10 @@
+.personnel-create-container{
+    width: 70%;
+    margin: 64px auto auto;
+    border: 1px solid #2b2b2c;
+    border-radius: 12px;
+    padding: 16px 16px 64px;
+}
+.personnel-create-header{
+    margin-left: 16px;
+}

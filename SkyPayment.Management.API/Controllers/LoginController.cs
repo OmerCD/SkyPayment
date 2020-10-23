@@ -7,12 +7,12 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using SkyPayment.API.Helper;
+using SkyPayment.Management.API.Helper;
 using SkyPayment.Contract.RequestModel;
 using SkyPayment.Core;
 using SkyPayment.Domain.CQ.Queries.AuthenticationQueries;
 
-namespace SkyPayment.API.Controllers
+namespace SkyPayment.Management.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

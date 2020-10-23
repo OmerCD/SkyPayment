@@ -10,5 +10,6 @@ namespace SkyPayment.Infrastructure.Interface
         Restaurant GetById(string managementUserId, string restaurantId);
         IEnumerable<Restaurant> GetManagementUserRestaurants(string userId);
         bool DeleteRestaurant(string managementUserId, string restaurantId);
+        IEnumerable<Restaurant> GetByIds(string requestManagementUserId, IEnumerable<string> restaurantIds);
     }
 }

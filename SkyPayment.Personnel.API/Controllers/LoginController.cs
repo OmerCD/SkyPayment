@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SkyPayment.API.Helper;
+using SkyPayment.Management.API.Helper;
 using SkyPayment.Contract.RequestModel;
 using SkyPayment.Core;
 using SkyPayment.Domain.CQ.Queries.AuthenticationQueries;

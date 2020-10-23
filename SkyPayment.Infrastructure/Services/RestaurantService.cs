@@ -67,5 +67,11 @@ namespace SkyPayment.Infrastructure.Services
 
             return true;
         }
+
+        public IEnumerable<Restaurant> GetByIds(string requestManagementUserId, IEnumerable<string> restaurantIds)
+        {
+            var managementUser = _managementUserRepository.FindById(requestManagementUserId);
+            return managementUser?.Restaurants.Where(x=>restaurantIds.Contains(x.Id));
+        }
     }
 }

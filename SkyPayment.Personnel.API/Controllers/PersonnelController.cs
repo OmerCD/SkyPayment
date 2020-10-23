@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using SkyPayment.Personnel.API.Hub;
 
 namespace SkyPayment.Personnel.API.Controllers
 {
@@ -11,13 +8,12 @@ namespace SkyPayment.Personnel.API.Controllers
     [Route("api/[controller]")]
     public class PersonnelController : ControllerBase
     {
-      
+        private readonly IHubContext<PersonnelHub> _hubContext;
         /* Business eklenecektir. */ 
-        public PersonnelController()
+        public PersonnelController(IHubContext<PersonnelHub> hubContext)
         {
-            
+            _hubContext = hubContext;
         }
-
         public IActionResult Orders()
         {
             return Ok();
