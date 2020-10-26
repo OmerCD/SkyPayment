@@ -21,12 +21,10 @@ namespace SkyPayment.Management.API.Controllers
     public class RestaurantController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly IRestaurantService _restaurantService;
 
-        public RestaurantController(IMediator mediator, IRestaurantService restaurantService)
+        public RestaurantController(IMediator mediator)
         {
             _mediator = mediator;
-            _restaurantService = restaurantService;
         }
 
         [HttpGet("test")]

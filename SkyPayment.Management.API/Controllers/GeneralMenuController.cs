@@ -7,6 +7,8 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SkyPayment.Contract.RequestModel;
 using SkyPayment.Domain.CQ.Commands.GeneralMenuCommand;
+using SkyPayment.Domain.Helpers;
+using SkyPayment.Management.API.Helper;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -39,14 +41,10 @@ namespace SkyPayment.Management.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateMenu([FromBody] ManagementUserMenuRequestModel createManagementUserMenu)
         {
-            var claimsIdentity = User.Identity as ClaimsIdentity;
-            string value = "5f801cc470771e31fb1f40c0";
-            //claimsIdentity?.FindFirst(ClaimTypes.NameIdentifier)?.Value
-            var command = new CreateUserMenuCommand(createManagementUserMenu.Name,value
+            var command = new CreateUserMenuCommand(createManagementUserMenu.Name, User.GetManagementUserId()
                 , createManagementUserMenu.Type);
             var response = await _mediator.Send(command);
-            return Ok();
+            return response.ToActionResult();
         }
-       
     }
 }
