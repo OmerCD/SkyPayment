@@ -7,14 +7,16 @@
         public string FirstName { get; }
         public string LastName { get; }
         public string TelephoneNumber { get; }
+        public string UserName { get;}
 
-        public ClientUserRegisterCommand(string email, string password, string firstName, string lastName, string telephoneNumber)
+        public ClientUserRegisterCommand(string email, string password, string firstName, string lastName, string telephoneNumber, string userName)
         {
-           Email = email;
+           Email = email.Trim().ToLower();
            Password = password;
            FirstName = firstName;
            LastName = lastName;
            TelephoneNumber = telephoneNumber;
+           UserName = userName;
         }
     }
 }

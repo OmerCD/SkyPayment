@@ -20,10 +20,13 @@ function Register({onValidSubmit}){
                 <input type='email' placeholder='E-Posta' name='email'/>
             </Form.Field>
             <Form.Field>
-                <input placeholder='Ad' name='name'/>
+                <input placeholder='Ad' name='firstName'/>
             </Form.Field>
             <Form.Field>
                 <input placeholder='Soyad' name='lastName'/>
+            </Form.Field>
+            <Form.Field>
+                <input placeholder='Telefon' name="telephoneNumber"/>
             </Form.Field>
             <Form.Field>
                 <input type='password' placeholder='Şifre' name='password'/>

@@ -9,6 +9,9 @@ function Homepage() {
         });
         authService.testPersonnelToken().then(result => {
             console.log("Auth Token Personnel Test :", result);
+        });
+        authService.testCustomerToken().then(result => {
+            console.log("Auth Token Customer Test :", result);
         })
     }
     return (

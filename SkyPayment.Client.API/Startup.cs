@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -13,10 +16,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using SkyPayment.Core;
 using SkyPayment.Core.Entities;
+using SkyPayment.Core.Mongo;
 using SkyPayment.Infrastructure;
+using SkyPayment.Mappings;
 using SkyPayment.Repository;
 
 namespace SkyPayment.Client.API
@@ -38,10 +45,17 @@ namespace SkyPayment.Client.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "SkyPayment.Client.API", Version = "v1"});
             });
+            services.Configure<Settings>(Configuration);
             services.AddMediatR(typeof(Domain.Domain));
             services.AddRepositories(typeof(BaseEntity));
             services.AddServices();
-            
+            services.AddMvc().AddFluentValidation(configuration =>
+            {
+                configuration.ValidatorOptions.LanguageManager.Culture = new CultureInfo("tr");
+                configuration.RegisterValidatorsFromAssemblyContaining<Startup>();
+            });
+            services.AddScoped(x =>
+                new SkyPaymentContext(x.GetRequiredService<IOptions<Settings>>().Value));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -57,6 +71,8 @@ namespace SkyPayment.Client.API
                             new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Token:SecretKey"]))
                     };
                 });
+
+            services.AddAutoMapper(typeof(MappingProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,7 +88,8 @@ namespace SkyPayment.Client.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            
+
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             app.UseAuthentication();
             app.UseAuthorization();
 

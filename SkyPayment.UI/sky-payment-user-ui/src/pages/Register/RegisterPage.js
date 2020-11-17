@@ -1,28 +1,36 @@
 import React, {useState} from "react";
-import Login from "../../components/login/Login";
 import AuthenticationService from "../../services/AuthenticationService";
 import {useAuth} from "../../context/AuthContext";
-import './Login.css';
-import {Header, Icon} from "semantic-ui-react";
+import {Header} from "semantic-ui-react";
 import Register from "../../components/register/Register";
+import {withRouter} from "react-router-dom";
 
-function RegisterPage() {
+function RegisterPage({history}) {
     const authService = new AuthenticationService(useAuth());
     const [errorArea, setErrorArea] = useState(<></>)
     const handleValidSubmit = (registerInfo) => {
         if (registerInfo.password === registerInfo.rePassword) {
             authService.register(registerInfo).then(result => {
-                console.log(result)
-                if (result?.status !== 200) {
+                if (result?.data.isError === true){
                     setErrorArea((
-                        <label style={{marginTop: '16px', color: 'red'}}>Kullanıcı adı veya şifre hatalı</label>
+                        <label style={{marginTop: '16px', color: 'red'}}>{result.data.description}</label>
                     ));
+                }
+                else if (result?.status !== 201) {
+                    setErrorArea((
+                        <label style={{marginTop: '16px', color: 'red'}}>Bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.</label>
+                    ));
+                }
+                else{
+                    history.push('/');
                 }
             });
         }
-        setErrorArea((
-            <label style={{marginTop: '16px', color: 'red'}}>Girilen şifreler uyuşmuyor</label>
-        ))
+        else {
+            setErrorArea((
+                <label style={{marginTop: '16px', color: 'red'}}>Girilen şifreler uyuşmuyor</label>
+            ))
+        }
     }
     return (
         <div className={'login-container'}>
@@ -37,4 +45,4 @@ function RegisterPage() {
     )
 }
 
-export default RegisterPage;
+export default withRouter(RegisterPage);

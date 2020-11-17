@@ -21,8 +21,10 @@ namespace SkyPayment.Client.API.Controllers
         [HttpPost]
         public async Task<IActionResult> RegisterUser(UserRegisterCreateModel model)
         {
-            var command = new ClientUserRegisterCommand(model.Email, model.Password, model.FirstName, model.LastName, model.TelephoneNumber);
-            return await _mediator.ToActionResult(command);
+            var command = new ClientUserRegisterCommand(model.Email, model.Password, model.FirstName, model.LastName,
+                model.TelephoneNumber, model.UserName);
+            var actionResult = await _mediator.ToActionResult(command);
+            return actionResult;
         }
     }
 }

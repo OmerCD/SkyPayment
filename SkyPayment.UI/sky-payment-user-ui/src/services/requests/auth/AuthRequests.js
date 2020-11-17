@@ -6,7 +6,7 @@ export class AuthRequests extends BaseRequests{
         super();
     }
     async login(userName,password){
-        const response = await axios.post(this.baseAddress+'login',{userName,password});
+        const response = await axios.get(this.baseAddress+'login',{params:{userName,password}});
         return response;
     }
     async register(registerInfo){
@@ -19,6 +19,10 @@ export class AuthRequests extends BaseRequests{
     }
     async testPersonnelAuthentication(){
         const response = await this.axios.get('login/test/personnel');
+        return response.status === 200;
+    }
+    async testCustomerAuthentication(){
+        const response = await this.axios.get('login/test/customer');
         return response.status === 200;
     }
 }

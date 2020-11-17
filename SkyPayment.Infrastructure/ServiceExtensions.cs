@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using SkyPayment.Infrastructure.Interface;
+using SkyPayment.Infrastructure.Services;
 
 namespace SkyPayment.Infrastructure
 {
@@ -18,6 +19,9 @@ namespace SkyPayment.Infrastructure
                 var interfaceType = serviceType.GetInterfaces().FirstOrDefault();
                 services.AddScoped(interfaceType, serviceType);
             }
+
+            services.AddSingleton<ISecurePasswordHasherService, SecurePasswordHasherService>(provider =>
+                new SecurePasswordHasherService(16, 20, 10000));
 
             return services;
         }

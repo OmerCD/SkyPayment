@@ -1,5 +1,4 @@
 import {AuthRequests} from "./requests/auth/AuthRequests";
-import {useAuth} from "../context/AuthContext";
 
 class AuthenticationService {
     constructor(authContext) {
@@ -10,8 +9,8 @@ class AuthenticationService {
     async login(userName, password) {
         const result = await this.authRequestManager.login(userName, password);
         if (result?.status === 200) {
-            localStorage.setItem('token', JSON.stringify(result.data));
-            this.authContext.setToken(result.data.token);
+            localStorage.setItem('token', JSON.stringify(result.data.data));
+            this.authContext.setToken(result.data.data.token);
         }
         return result;
 
@@ -27,6 +26,9 @@ class AuthenticationService {
     }
     async testPersonnelToken() {
         return await this.authRequestManager.testPersonnelAuthentication();
+    }
+    async testCustomerToken(){
+        return await this.authRequestManager.testCustomerAuthentication();
     }
 
     getToken() {

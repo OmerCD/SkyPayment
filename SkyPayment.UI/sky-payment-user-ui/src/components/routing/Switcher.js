@@ -4,9 +4,8 @@ import LoginPage from "../../pages/Login/LoginPage";
 import {useAuth} from "../../context/AuthContext";
 import AuthenticationService from "../../services/AuthenticationService";
 import Homepage from "../../pages/Home/HomePage";
-import RestaurantPage from "../../pages/Restaurant/RestaurantPage";
-import AddRestaurantPage from "../../pages/Restaurant/AddRestaurantPage";
 import OrdersPage from "../../pages/Orders/OrdersPage";
+import RegisterPage from "../../pages/Register/RegisterPage";
 
 function Switcher() {
     const authenticationService = new AuthenticationService(useAuth());
@@ -26,9 +25,14 @@ function Switcher() {
     }
     else{
         content = (
-            <Route path='/'>
-                <LoginPage/>
-            </Route>
+          <>
+              <Route exact path='/'>
+                  <LoginPage/>
+              </Route>
+              <Route path = '/register'>
+                  <RegisterPage/>
+              </Route>
+          </>
         )
     }
     return (

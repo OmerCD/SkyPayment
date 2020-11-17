@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {withRouter, useLocation, Link} from "react-router-dom";
+import {withRouter, useLocation} from "react-router-dom";
 import {Button, Menu, Segment} from "semantic-ui-react";
 import {useAuth} from "../../../context/AuthContext";
 import AuthenticationService from "../../../services/AuthenticationService";

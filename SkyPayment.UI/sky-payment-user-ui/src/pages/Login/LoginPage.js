@@ -3,14 +3,14 @@ import Login from "../../components/login/Login";
 import AuthenticationService from "../../services/AuthenticationService";
 import {useAuth} from "../../context/AuthContext";
 import './Login.css';
-import {Header, Icon} from "semantic-ui-react";
+import {Header} from "semantic-ui-react";
+import {withRouter} from "react-router-dom";
 
-function LoginPage() {
+function LoginPage({history}) {
     const authService = new AuthenticationService(useAuth());
     const [errorArea, setErrorArea] = useState(<></>)
     const handleValidSubmit = (loginData) => {
         authService.login(loginData.userName, loginData.password).then(result => {
-            console.log(result)
             if (result?.status !== 200){
                 setErrorArea((
                     <label style={{marginTop:'16px', color:'red'}}>Kullanıcı adı veya şifre hatalı</label>
@@ -18,17 +18,20 @@ function LoginPage() {
             }
         });
     }
+    const handleRegister = ()=> {
+        history.push('/register');
+    }
     return (
         <div className={'login-container'}>
             <div className={'login-border'}>
                 <Header  as='h2'>
                     <Header.Content style={{float:'left'}}>Kullanıcı Girişi</Header.Content>
                 </Header>
-                <Login onValidSubmit={handleValidSubmit}/>
+                <Login onValidSubmit={handleValidSubmit} registerClicked={handleRegister}/>
                 {errorArea}
             </div>
         </div>
     )
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);
