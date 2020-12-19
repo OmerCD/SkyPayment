@@ -16,6 +16,12 @@ function RegisterPage({history}) {
                         <label style={{marginTop: '16px', color: 'red'}}>{result.data.description}</label>
                     ));
                 }
+                else if (result?.data.errors){
+                    const errors = Object.keys(result.data.errors).map(error => <li>{result.data.errors[error][0]}</li>)
+                    setErrorArea((
+                        <label style={{marginTop: '16px', color: 'red'}}>{errors}</label>
+                    ));
+                }
                 else if (result?.status !== 201) {
                     setErrorArea((
                         <label style={{marginTop: '16px', color: 'red'}}>Bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.</label>

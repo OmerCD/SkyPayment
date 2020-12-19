@@ -8,11 +8,11 @@ namespace SkyPayment.Client.API.Validators
     {
         public RegisterValidator()
         {
-            RuleFor(x => x.Email).EmailAddress();
-            RuleFor(x => x.Password).NotEmpty().NotNull().Length(6, 12);
-            RuleFor(x => x.FirstName).NotEmpty().Length(2, 20);
-            RuleFor(x => x.LastName).NotEmpty().Length(2, 25);
-            RuleFor(x => x.TelephoneNumber).Length(11).Custom((value, context) =>
+            RuleFor(x => x.Email).EmailAddress().WithName("E-Posta");
+            RuleFor(x => x.Password).NotEmpty().NotNull().Length(6, 12).WithName("Şifre");
+            RuleFor(x => x.FirstName).NotEmpty().Length(2, 20).WithName("İsim");
+            RuleFor(x => x.LastName).NotEmpty().Length(2, 25).WithName("Soyisim");
+            RuleFor(x => x.TelephoneNumber).Length(11).WithName("Telefon Numarası").Custom((value, context) =>
             {
                 if (value?.Any(char.IsDigit) != true)
                 {

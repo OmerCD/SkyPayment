@@ -7,6 +7,7 @@ riderModule.iml
 /node_modules/
 node_modules/
 .idea/
+SkyPayment.UI/pratice/
 
 
 # dependencies
@@ -31,4 +32,36 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 /.vs/SkyPayment/v16/.suo
+
+/SkyPayment.UI/practice/.editorconfig
+/SkyPayment.UI/practice/.gitattributes
+/SkyPayment.UI/practice/img/.gitignore
+/SkyPayment.UI/practice/.gitignore
+/SkyPayment.UI/practice/.htaccess
+/SkyPayment.UI/practice/404.html
+/SkyPayment.UI/practice/browserconfig.xml
+/SkyPayment.UI/practice/doc/css.md
 /SkyPayment.UI/sky-payment-management-ui/debug.log
+/SkyPayment.UI/practice/doc/extend.md
+/SkyPayment.UI/practice/doc/faq.md
+/SkyPayment.UI/practice/favicon.ico
+/SkyPayment.UI/practice/doc/html.md
+/SkyPayment.UI/practice/humans.txt
+/SkyPayment.UI/practice/icon.png
+/SkyPayment.UI/practice/index.html
+/SkyPayment.UI/practice/doc/js.md
+/SkyPayment.UI/practice/LICENSE.txt
+/SkyPayment.UI/practice/css/main.css
+/SkyPayment.UI/practice/js/main.js
+/SkyPayment.UI/practice/doc/misc.md
+/SkyPayment.UI/practice/js/vendor/modernizr-3.11.2.min.js
+/SkyPayment.UI/practice/css/normalize.css
+/SkyPayment.UI/practice/package.json
+/SkyPayment.UI/practice/package-lock.json
+/SkyPayment.UI/practice/js/plugins.js
+/SkyPayment.UI/practice/robots.txt
+/SkyPayment.UI/practice/site.webmanifest
+/SkyPayment.UI/practice/tile.png
+/SkyPayment.UI/practice/tile-wide.png
+/SkyPayment.UI/practice/doc/TOC.md
+/SkyPayment.UI/practice/doc/usage.md
