@@ -6,6 +6,7 @@ import AuthenticationService from "../../services/AuthenticationService";
 import Homepage from "../../pages/Home/HomePage";
 import OrdersPage from "../../pages/Orders/OrdersPage";
 import RegisterPage from "../../pages/Register/RegisterPage";
+import MenusPage from "../../pages/Menus/MenusPage";
 
 function Switcher() {
     const authenticationService = new AuthenticationService(useAuth());
@@ -20,6 +21,9 @@ function Switcher() {
                 <Route path='/order/list'>
                     <OrdersPage/>
                 </Route>
+                <Route path = '/menus'>
+                  <MenusPage/>
+              </Route>
             </>
         )
     }

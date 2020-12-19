@@ -25,6 +25,7 @@ function Navbar(props) {
     }
     const logout = () => {
         authService.logout();
+        props.history.push('/')
     }
     return (
         <Segment inverted style={{height: navbarHeight, marginBottom: 0, borderRadius:0, paddingTop:'2px'}}>
