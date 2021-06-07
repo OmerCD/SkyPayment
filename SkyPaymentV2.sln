@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyPaymentV2.Authentication", "src\SkyPaymentV2.Authentication\SkyPaymentV2.Authentication.csproj", "{0D1CFB7F-468B-4707-AC70-1286DEE3F40F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C1B02795-585F-453B-9EE5-85CB474234A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyPaymentV2.Domain", "src\SkyPaymentV2.Domain\SkyPaymentV2.Domain.csproj", "{497AD56C-846A-4B0E-B8B1-E14C667479E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyPaymentV2.IdentityServer", "src\SkyPaymentV2.IdentityServer\SkyPaymentV2.IdentityServer.csproj", "{87E30E5E-2848-4790-9D6F-5D26534ED62B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyPaymentV2.Customer.API", "src\SkyPaymentV2.Customer.API\SkyPaymentV2.Customer.API.csproj", "{541543CD-3A4B-4DC6-8DA6-685A5C43BDCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyPaymentV2.Manager.API", "src\SkyPaymentV2.Manager.API\SkyPaymentV2.Manager.API.csproj", "{ADF312EB-A86A-4AF3-A9A7-14495D96CABB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyPaymentV2.Core", "src\SkyPaymentV2.Core\SkyPaymentV2.Core.csproj", "{C7A8ED56-BDD4-4702-B71D-61A8152822C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D1CFB7F-468B-4707-AC70-1286DEE3F40F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D1CFB7F-468B-4707-AC70-1286DEE3F40F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D1CFB7F-468B-4707-AC70-1286DEE3F40F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D1CFB7F-468B-4707-AC70-1286DEE3F40F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{497AD56C-846A-4B0E-B8B1-E14C667479E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{497AD56C-846A-4B0E-B8B1-E14C667479E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{497AD56C-846A-4B0E-B8B1-E14C667479E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{497AD56C-846A-4B0E-B8B1-E14C667479E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87E30E5E-2848-4790-9D6F-5D26534ED62B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87E30E5E-2848-4790-9D6F-5D26534ED62B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87E30E5E-2848-4790-9D6F-5D26534ED62B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87E30E5E-2848-4790-9D6F-5D26534ED62B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{541543CD-3A4B-4DC6-8DA6-685A5C43BDCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{541543CD-3A4B-4DC6-8DA6-685A5C43BDCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{541543CD-3A4B-4DC6-8DA6-685A5C43BDCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{541543CD-3A4B-4DC6-8DA6-685A5C43BDCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADF312EB-A86A-4AF3-A9A7-14495D96CABB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADF312EB-A86A-4AF3-A9A7-14495D96CABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADF312EB-A86A-4AF3-A9A7-14495D96CABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADF312EB-A86A-4AF3-A9A7-14495D96CABB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7A8ED56-BDD4-4702-B71D-61A8152822C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7A8ED56-BDD4-4702-B71D-61A8152822C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7A8ED56-BDD4-4702-B71D-61A8152822C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7A8ED56-BDD4-4702-B71D-61A8152822C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0D1CFB7F-468B-4707-AC70-1286DEE3F40F} = {C1B02795-585F-453B-9EE5-85CB474234A1}
+		{497AD56C-846A-4B0E-B8B1-E14C667479E2} = {C1B02795-585F-453B-9EE5-85CB474234A1}
+		{87E30E5E-2848-4790-9D6F-5D26534ED62B} = {C1B02795-585F-453B-9EE5-85CB474234A1}
+		{541543CD-3A4B-4DC6-8DA6-685A5C43BDCF} = {C1B02795-585F-453B-9EE5-85CB474234A1}
+		{ADF312EB-A86A-4AF3-A9A7-14495D96CABB} = {C1B02795-585F-453B-9EE5-85CB474234A1}
+		{C7A8ED56-BDD4-4702-B71D-61A8152822C6} = {C1B02795-585F-453B-9EE5-85CB474234A1}
+	EndGlobalSection
+EndGlobal
