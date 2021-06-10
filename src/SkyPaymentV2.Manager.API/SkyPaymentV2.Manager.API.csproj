@@ -5,7 +5,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="MediatR" Version="9.0.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SkyPaymentV2.Domain\SkyPaymentV2.Domain.csproj" />
     </ItemGroup>
 
 </Project>

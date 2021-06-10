@@ -6,6 +6,7 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Configuration;
@@ -15,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Polly;
+using SkyPaymentV2.Infrastructure.IoC.Extensions;
 using SkyPaymentV2.User.API.ActionFilters;
 
 namespace SkyPaymentV2.User.API
@@ -31,22 +33,10 @@ namespace SkyPaymentV2.User.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddControllers();
-            services.AddAuthentication("Bearer")
-                .AddJwtBearer("Bearer", options =>
-                {
-                    options.Authority = Configuration["ServiceUrls:IdentityServer"];
-                    options.TokenValidationParameters = new()
-                    {
-                        ValidateAudience = false
-                    };
-                });
+            services.AddIdentityServerWithOptions(Configuration);
             services.AddSingleton<IActionResultExecutor<ObjectResult>, ResponseEnvelopeResultExecutor>();
-            services.AddHttpClient("IdentityServer",
-                    client => { client.BaseAddress = new Uri(Configuration["ServiceUrls:IdentityServer"]); })
-                .AddTransientHttpErrorPolicy(builder =>
-                    builder.WaitAndRetryAsync(3, _ => TimeSpan.FromMilliseconds(300))
-                );
             services.AddMediatR(typeof(CQ.Domain), GetType());
             services.AddSwaggerGen(c =>
             {
