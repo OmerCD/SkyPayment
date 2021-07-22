@@ -1,8 +1,8 @@
 namespace SkyPayment.Shared
 {
-    public class MenuItemTagResponse
+    public class MenuListResponse
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-        public int Value { get; set; }
     }
 }

@@ -10,6 +10,4 @@ namespace SkyPayment.Shared
         public string ManagementUserId { get; set; }
         
     }
-
-  
 }

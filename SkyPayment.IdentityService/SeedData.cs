@@ -30,6 +30,26 @@ namespace SkyPayment.IdentityService
 
             using (var serviceProvider = services.BuildServiceProvider())
             {
+                IdentityRole userRole = null;
+                IdentityRole personnelRole = null;
+                IdentityRole managerRole = null;
+                using (var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>())
+                {
+                    IdentityRole AddRole(string roleName)
+                    {
+                        var role = roleManager.FindByNameAsync(roleName).Result;
+                        if (role != null) return role;
+                        role = new IdentityRole()
+                        {
+                            Name = roleName
+                        };
+                        roleManager.CreateAsync(role).Wait();
+                        return role;
+                    }
+                    userRole = AddRole("user");
+                    personnelRole = AddRole("personnel");
+                    managerRole = AddRole("manager");
+                }
                 using (var scope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
                 {
                     var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
@@ -43,7 +63,7 @@ namespace SkyPayment.IdentityService
                         {
                             UserName = "alice",
                             Email = "AliceSmith@email.com",
-                            EmailConfirmed = true,
+                            EmailConfirmed = true
                         };
                         var result = userMgr.CreateAsync(alice, "Pass123$").Result;
                         if (!result.Succeeded)
@@ -57,6 +77,7 @@ namespace SkyPayment.IdentityService
                             new Claim(JwtClaimTypes.GivenName, "Alice"),
                             new Claim(JwtClaimTypes.FamilyName, "Smith"),
                             new Claim(JwtClaimTypes.WebSite, "http://alice.com"),
+                            new Claim(JwtClaimTypes.Role, userRole.Name),
                         }).Result;
                         if (!result.Succeeded)
                         {
@@ -91,6 +112,7 @@ namespace SkyPayment.IdentityService
                             new Claim(JwtClaimTypes.GivenName, "Bob"),
                             new Claim(JwtClaimTypes.FamilyName, "Smith"),
                             new Claim(JwtClaimTypes.WebSite, "http://bob.com"),
+                            new Claim(JwtClaimTypes.Role, personnelRole.Name),
                             new Claim("location", "somewhere")
                         }).Result;
                         if (!result.Succeeded)
@@ -103,6 +125,54 @@ namespace SkyPayment.IdentityService
                     else
                     {
                         Log.Debug("bob already exists");
+                    }
+                    var jhon = userMgr.FindByNameAsync("jhon").Result;
+                    if (jhon == null)
+                    {
+                        jhon = new ApplicationUser
+                        {
+                            UserName = "jhon",
+                            Email = "BobSmith@email.com",
+                            EmailConfirmed = true
+                        };
+                        var result = userMgr.CreateAsync(jhon, "Pass123$").Result;
+                        if (!result.Succeeded)
+                        {
+                            throw new Exception(result.Errors.First().Description);
+                        }
+
+                        result = userMgr.AddClaimsAsync(jhon, new Claim[]
+                        {
+                            new Claim(JwtClaimTypes.Name, "Jhon Smith"),
+                            new Claim(JwtClaimTypes.GivenName, "Jhon"),
+                            new Claim(JwtClaimTypes.FamilyName, "Smith"),
+                            new Claim(JwtClaimTypes.WebSite, "http://jhon.com"),
+                            new Claim(JwtClaimTypes.Role, managerRole.Name),
+                            new Claim("location", "somewhere")
+                        }).Result;
+                        if (!result.Succeeded)
+                        {
+                            throw new Exception(result.Errors.First().Description);
+                        }
+
+                        Log.Debug("jhon created");
+                    }
+                    else
+                    {
+                        Log.Debug("jhon already exists");
+                    }
+
+                    if (!userMgr.IsInRoleAsync(alice, userRole.Name).Result)
+                    {
+                        userMgr.AddToRoleAsync(alice, userRole.Name).Wait();
+                    }
+                    if (!userMgr.IsInRoleAsync(bob, personnelRole.Name).Result)
+                    {
+                        userMgr.AddToRoleAsync(bob, personnelRole.Name).Wait();
+                    }
+                    if (!userMgr.IsInRoleAsync(jhon, managerRole.Name).Result)
+                    {
+                        userMgr.AddToRoleAsync(jhon, managerRole.Name).Wait();
                     }
                 }
             }

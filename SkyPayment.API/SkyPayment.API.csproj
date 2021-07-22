@@ -9,6 +9,7 @@
       <PackageReference Include="Mapster" Version="7.2.0" />
       <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
       <PackageReference Include="MediatR" Version="9.0.0" />
+      <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
       <PackageReference Include="MongoDB.Driver" Version="2.13.0" />
     </ItemGroup>
 
@@ -20,6 +21,13 @@
       <Reference Include="MongoORM4NetCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
         <HintPath>..\MongoORM4NetCore.dll</HintPath>
       </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.8" />
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.1.4" />
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.1.4" />
     </ItemGroup>
 
 

@@ -8,14 +8,13 @@ namespace SkyPayment.Shared
         public double Price { get; set; }
         public string Ingredients { get; set; }
         public ProductContent ProductContent { get; set; }
-        public ICollection<MenuItemTagResponse> Tags { get; set; }
-        public int TagValue { get; set; }
+
     }
     public enum ProductContent
     {
-        IsVegan,
-        IsDiabetic,
-        IsGlutenFree,
-        IsVegetarian
+        IsVegan=1,
+        IsDiabetic=2,
+        IsGlutenFree=4,
+        IsVegetarian=8
     }
 }

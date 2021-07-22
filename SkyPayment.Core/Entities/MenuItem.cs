@@ -9,8 +9,7 @@ namespace SkyPayment.Core.Entities
         public double Price { get; set; }
         public string Ingredients { get; set; }
         public ProductContent ProductContent { get; set; }
-        public ICollection<MenuItemTag> Tags { get; set; }
-        public int TagValue { get; set; }
+      
     }
     public enum ProductContent
     {
