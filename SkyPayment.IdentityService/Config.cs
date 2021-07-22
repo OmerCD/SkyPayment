@@ -13,10 +13,8 @@ namespace SkyPayment.IdentityService
             new IdentityResource[]
             {
                 new IdentityResources.OpenId(),
-                new IdentityResource(
-                    name: "profile",
-                    userClaims: new[] {"name", "email"},
-                    displayName: "Profile Data")
+                new IdentityResources.Profile()
+
             };
 
         public static IEnumerable<ApiScope> ApiScopes =>
@@ -24,7 +22,7 @@ namespace SkyPayment.IdentityService
             {
                 new ApiScope("scope1"),
                 new ApiScope("scope2"),
-                new ApiScope("ohmsndscope", "OhmsND Scope", new []{"name", "email"})
+                new ApiScope("user", "User Scope", new []{"name", "email", "role"})
             };
 
         public static IEnumerable<Client> Clients =>
@@ -32,14 +30,14 @@ namespace SkyPayment.IdentityService
             {
                 new()
                 {
-                    ClientId = "ohmsndui.client",
-                    ClientName = "OhmsND UI User",
+                    ClientId = "user",
+                    ClientName = "SkyPayment User",
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                     ClientSecrets =
                     {
                         new("10d570c5-64a6-4656-94da-cf6506e51106".Sha256())
                     },
-                    AllowedScopes = {"ohmsndscope", "profile"}
+                    AllowedScopes = {"user", "profile"}
                 },
                 // m2m client credentials flow client
                 new Client
