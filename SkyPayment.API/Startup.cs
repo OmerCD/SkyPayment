@@ -10,6 +10,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MongoORM4NetCore;
+using SkyPayment.API.DependencyInjectionExtension;
+using SkyPayment.Core.Entities;
+using SkyPayment.Infrastructure.Extensions;
 
 namespace SkyPayment.API
 {
@@ -26,6 +30,12 @@ namespace SkyPayment.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddOhm(
+                Configuration.GetConnectionString("Mongo").Replace("@password", Configuration["Mongo:Password"]), "Orders",
+                typeof(Menu));
+            services.AddServices();
+            services.AddMapster();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
