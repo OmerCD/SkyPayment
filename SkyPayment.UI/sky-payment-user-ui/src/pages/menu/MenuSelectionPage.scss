@@ -1,0 +1,11 @@
+@import "../../colors";
+
+.menu-list-container-page{
+  height: 100vh;
+  background: $primary-color;
+}
+.menu-list-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

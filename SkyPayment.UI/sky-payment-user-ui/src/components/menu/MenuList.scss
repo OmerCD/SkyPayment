@@ -1,0 +1,10 @@
+@import '../../colors';
+
+.menu-list-container{
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  font-size: 22pt;
+  height: 100%;
+  align-items: center;
+}

@@ -1,0 +1,28 @@
+@import "../../colors";
+
+.menu-list-item {
+  margin-top: 6px;
+  background: rgba(0, 0, 0, 0.15);
+  color: $menu-header-color;
+  height: 22%;
+  display: flex;
+  width: 95%;
+
+  & div {
+    flex: 50%;
+    padding: 8px;
+  }
+
+  &_image {
+    & img {
+      border-radius: 16px;
+    }
+  }
+
+  &_name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+  }
+}

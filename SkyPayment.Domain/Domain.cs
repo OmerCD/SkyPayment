@@ -1,8 +1,7 @@
-﻿using System;
-
 namespace SkyPayment.Domain
 {
-    public class Class1
+    public class Domain
     {
+        
     }
 }
