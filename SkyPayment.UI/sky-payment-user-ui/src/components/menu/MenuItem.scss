@@ -1,0 +1,42 @@
+@import "../../colors";
+
+.menu-item-card{
+  background: $secondary-color;
+  width: 95%;
+  display: flex;
+  margin-top: 6px;
+  padding: 6px 0 6px 6px;
+  height: 115px;
+  &-image {
+    display: flex;
+    align-items: center;
+    flex-basis: 30%;
+    min-height: 110px;
+  }
+  &-info {
+    flex-basis: 70%;
+    display: flex;
+    padding-left: 8px;
+    &_description{
+      width: 100%;
+      &_name{
+        font-weight: bold;
+        font-size: 14pt;
+      }
+      &_ingredients{
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+      }
+    }
+    &_price{
+      background: $accent-color;
+      height: fit-content;
+      padding: 0 8px;
+      position: absolute;
+      right: 0;
+      color: white;
+    }
+  }
+}
