@@ -12,18 +12,26 @@ export interface MenuResponseModel {
     name: string;
     items: MenuItemResponse[];
     managementUserId: string;
+    menuId:string;
 }
 
 export interface MenuItemResponse {
+    id: string;
     name: string;
     price: number;
     ingredients: string;
-    productContent: ProductContent;
+    productContents: ProductContent[];
+    imageUrl: string;
 }
 
-export enum ProductContent {
-    IsVegan = 1,
-    IsDiabetic = 2,
-    IsGlutenFree = 4,
-    IsVegetarian = 8
+export interface ProductContent {
+    type:string,
+    displayName:string
 }
+
+// export enum ProductContent {
+//     IsVegan = 1,
+//     IsDiabetic = 2,
+//     IsGlutenFree = 4,
+//     IsVegetarian = 8
+// }

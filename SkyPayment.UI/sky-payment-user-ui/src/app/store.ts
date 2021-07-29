@@ -1,12 +1,14 @@
 import {configureStore, ThunkAction, Action, combineReducers} from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
 import sessionInfoReducer from '../features/session-info/sessionInfoSlice';
+import basketReducer from '../features/basket/basketSlice';
 import storage from "redux-persist/lib/storage";
 import {FLUSH, PAUSE, PERSIST, persistReducer, PURGE, REGISTER, REHYDRATE} from "redux-persist";
 
 const reducers = combineReducers({
   counter: counterReducer,
-  sessionInfo: sessionInfoReducer
+  sessionInfo: sessionInfoReducer,
+    basket: basketReducer,
 })
 
 const persistConfig = {key:'root', storage};

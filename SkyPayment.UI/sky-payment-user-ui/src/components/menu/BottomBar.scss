@@ -1,0 +1,60 @@
+@import "../../colors";
+@import "../../constants";
+
+.bottom-bar-container {
+  width: 98%;
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  height: $bottom-bar-height;
+  padding-top: 6px;
+  background: $accent-color;
+  border-radius: 18px 18px 0 0;
+  box-sizing: border-box;
+  margin: 0 auto;
+
+  &_items {
+    display: flex;
+    margin: 0 6px;
+    flex: 50%;
+
+    &_item {
+      display: flex;
+      margin-left: 8px;
+      width: 100%;
+      align-items: center;
+
+      & * {
+        font-size: 36px;
+        color: $primary-color-full;
+
+        &:focus {
+          color: $accent-text-color;
+        }
+      }
+
+    }
+
+    & .profile {
+      justify-content: flex-start;
+    }
+
+    & .basket {
+      justify-content: flex-end;
+      & div {
+        position: relative;
+      }
+
+      & .basket-count {
+        font-size: 15pt;
+        position: absolute;
+        justify-content: center;
+        color: $accent-text-color;
+        top: 20%;
+        transform: translateY(-20%);
+        right: -2px;
+      }
+    }
+
+  }
+}

@@ -1,5 +1,13 @@
-//$primary-color: #6f2f2f;
-$primary-color: rgb(210,74,19);
-$secondary-color: rgb(251,174,6);
+$primary-color: rgba(210, 74, 19, 0.9);
+$primary-color-full: rgb(210, 74, 19);
+$secondary-color: #55433C;
 $menu-header-color: white;
-$accent-color: #5e7ce3;
+$accent-color: #BDA79E;
+$accent-text-color:whitesmoke;
+$text-color:#BDA79E;
+$vegan-color: #41a83f;
+$vegan-color-gradient:linear-gradient(180deg, #1c7c59 0%,#25a05a  100%);
+$diabetic-color: #6c54f4;
+$diabetic-color-gradient: linear-gradient(180deg, #6c54f4 0%, #8c519c 100%);
+$gluten-free-color-gradient:linear-gradient(180deg, #64371f 0%, #41352d 100%);
+$vegetarian-color-gradient:linear-gradient(180deg, #9c2f33 0%, #c42a33 100%);

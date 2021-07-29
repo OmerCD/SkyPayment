@@ -18,6 +18,7 @@ namespace SkyPayment.Infrastructure.Services
 
         public  IEnumerable<Menu> GetAllMenus()
         {
+            
             return   _menu.GetAll(new BsonDocument());
         }
     }

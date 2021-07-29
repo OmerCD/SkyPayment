@@ -1,0 +1,29 @@
+@import "../../colors";
+
+.pill {
+  width: 90px;
+  height: 30px;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  line-height: 30px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  user-select: none;
+  margin-left: 4px;
+  &_vegan{
+    background: $vegan-color-gradient;
+  }
+  &_diabetic{
+    background: $diabetic-color-gradient;
+  }
+  &_gluten-free{
+    background: $gluten-free-color-gradient;
+    font-size: 11.5px;
+  }
+  &_vegetarian{
+    background: $vegetarian-color-gradient;
+    font-size: 13px;
+  }
+}

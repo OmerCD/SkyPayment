@@ -2,41 +2,65 @@
 
 .menu-item-card{
   background: $secondary-color;
-  width: 95%;
+  width: 98%;
   display: flex;
   margin-top: 6px;
   padding: 6px 0 6px 6px;
   height: 115px;
+  border-radius: 8px;
   &-image {
     display: flex;
-    align-items: center;
-    flex-basis: 30%;
+    flex-basis: 32%;
     min-height: 110px;
+    margin: -6px 2px -6px -6px;
+    & img{
+      border-radius: 8px 0 0 8px;
+      object-fit: cover;
+    }
   }
   &-info {
     flex-basis: 70%;
     display: flex;
     padding-left: 8px;
+    color: $text-color;
     &_description{
       width: 100%;
+      display: flex;
+      flex-direction: column;
       &_name{
-        font-weight: bold;
+        font-weight: 600;
         font-size: 14pt;
       }
       &_ingredients{
+        font-size: 12px;
+        font-weight: 500;
         overflow: hidden;
         display: -webkit-box;
-        -webkit-line-clamp: 4;
+        justify-self: center;
+        margin-top: 8px;
+        -webkit-line-clamp: 5;
         -webkit-box-orient: vertical;
+        padding-right: 8px;
+        text-align: justify;
       }
     }
     &_price{
       background: $accent-color;
-      height: fit-content;
-      padding: 0 8px;
+      line-height: 20px;
+      min-height: 20px;
+      min-width: 50px;
+      text-align: center;
+      padding: 3px 8px;
       position: absolute;
-      right: 0;
-      color: white;
+      right: calc(1% + 6px);
+      border-top-right-radius: 8px;
+      border: 3px solid $secondary-color;
+      border-left: 0;
+      margin-top: -6px;
+      & label {
+        color: $accent-text-color;
+        font-size: 16px;
+      }
     }
   }
 }
