@@ -43,5 +43,15 @@ namespace SkyPayment.Infrastructure.Services
             var menuItems = menus.SelectMany(x=>x.Items).Where(x=>x.Id==menuItemId);
             return menuItems;
         }
+
+        public bool UpdateMenu(Menu menu)
+        {
+            return _menu.Update(menu);
+        }
+
+        public bool DeleteMenu(string id)
+        {
+            return _menu.Delete(id);
+        }
     }
 }

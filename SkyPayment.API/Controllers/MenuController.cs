@@ -127,5 +127,20 @@ namespace SkyPayment.API.Controllers
             var send = _mediator.Send(menuCreateCommand);
             return Ok(send);
         }
+        [HttpPut]
+        public async Task<IActionResult> UpdateMenu([FromBody] MenuUpdateModel menuUpdateModel)
+        {
+            var menuUpdateCommand = new MenuUpdateCommand(menuUpdateModel.Name, menuUpdateModel.Items, menuUpdateModel.RestaurantId,
+                menuUpdateModel.Id);
+           await _mediator.Send(menuUpdateCommand);
+            return Ok();
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteMenu(string id)
+        {
+            var menuDeleteCommand = new MenuDeleteCommand(id);
+            var send = await _mediator.Send(menuDeleteCommand);
+            return Ok(send);
+        }
     }
 }

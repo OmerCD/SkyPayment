@@ -13,5 +13,7 @@ namespace SkyPayment.Infrastructure.Services
         IEnumerable<Menu> GetAllMenusByRestaurant(string restaurantId, string menuId);
         bool CreateMenu(Menu menu);
         IEnumerable<MenuItem> GetMenuItems(string restaurantId, string menuId, string menuItemId);
+        bool UpdateMenu(Menu menu);
+        bool DeleteMenu(string id);
     }
 }
