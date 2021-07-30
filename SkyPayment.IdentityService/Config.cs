@@ -22,12 +22,24 @@ namespace SkyPayment.IdentityService
             {
                 new ApiScope("scope1"),
                 new ApiScope("scope2"),
-                new ApiScope("user", "User Scope", new []{"name", "email", "role"})
+                new ApiScope("user", "User Scope", new []{"name", "email", "role"}),
+                new("manager", "Management Scope", new []{"name", "email", "role"})
             };
 
         public static IEnumerable<Client> Clients =>
             new Client[]
             {
+                new ()
+                {
+                    ClientId = "manager",
+                    ClientName = "SkyPayment Manager",
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                    ClientSecrets =
+                    {
+                        new("d96453c3-2e49-4b88-b925-5899e06432b5".Sha256())
+                    },
+                    AllowedScopes = {"manager", "profile"}
+                },
                 new()
                 {
                     ClientId = "user",
