@@ -16,6 +16,7 @@ using SkyPayment.Core.Entities;
 using SkyPayment.Infrastructure.Extensions;
 using Microsoft.OpenApi.Models;
 using OhmsND.API.Extensions;
+using SkyPayment.Core.Value;
 
 namespace SkyPayment.API
 {
@@ -42,6 +43,7 @@ namespace SkyPayment.API
                 typeof(Menu));
             services.AddServices();
             services.AddMapster();
+            services.Configure<Settings>(Configuration.GetSection("Settings"));
             services.AddMediatR(typeof(Domain.Domain));
         }
 

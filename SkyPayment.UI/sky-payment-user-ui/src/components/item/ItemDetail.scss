@@ -1,0 +1,128 @@
+@import "../../colors";
+$bottom-bar-height:66px;
+
+.item-detail-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  & .item-detail-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: calc(100vh / 3);
+  }
+
+  & .item-detail-description {
+    &_header {
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
+      color: #d0d0d0;
+      margin-top: 10px;
+      border-bottom: 4px dashed #d0d0d0;
+      padding-bottom: 4px;
+    }
+
+    &_ingredients {
+      margin-top: 10px;
+      margin-left: 10px;
+      margin-right: 10px;
+      text-align: justify;
+      word-spacing: -2px;
+      color: white;
+    }
+
+    &_contents {
+
+    }
+  }
+
+  & .item-detail-price {
+    position: absolute;
+    bottom: calc(#{$bottom-bar-height} - 16px);
+    text-align: center;
+    width: 100%;
+    font-size: 24px;
+    color: wheat;
+    min-width: 375px;
+    label {
+      background-color: $secondary-color;
+      padding:18px;
+      border-radius: 60px 60px 0 0;
+      border: 1px solid $accent-color;
+      min-width: 100px;
+      display: inline-block;
+    }
+  }
+
+  .item-detail-contents {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 10px;
+  }
+
+  .item-detail-add-to-basket {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    width: 100%;
+    background-color: $secondary-color;
+    border-radius: 80px 80px 0 0;
+
+    &_symbols {
+      display: flex;
+      justify-content: space-evenly;
+      font-size: 32px;
+      width: 60%;
+      * {
+        height: 50px;
+        width: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .count {
+        color: white;
+      }
+
+      .symbol {
+        background-color: $accent-color;
+        color: $accent-text-color;
+        border-radius: 50%;
+        padding: 8px;
+        font-size: 16px;
+      }
+    }
+  }
+
+  .item-detail-close {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    font-size: 28px;
+    background-color: rgba(9, 9, 9, 0.53);
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    user-select: none;
+
+    svg {
+      transform: rotateZ(45deg);
+    }
+  }
+}
+
+
+

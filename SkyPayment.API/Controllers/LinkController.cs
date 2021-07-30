@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using SkyPayment.Core.Value;
 
 namespace SkyPayment.API.Controllers
 {
@@ -6,10 +8,17 @@ namespace SkyPayment.API.Controllers
     [Route("api/[controller]")]
     public class LinkController:ControllerBase
     {
+        private readonly Settings _settings;
+
+        public LinkController(IOptions<Settings> settings)
+        {
+            _settings = settings.Value;
+        }
+
         [HttpGet("{restaurantId}/{tableId}")]
         public IActionResult GetLink(string restaurantId,string tableId)
         {
-            return Ok($"http://192.168.31.220:3000/restaurant/{restaurantId}/{tableId}/menu/");
+            return Ok($"{_settings.BaseQRLink}/restaurant/{restaurantId}/{tableId}/menu/");
         }
     }
 }
