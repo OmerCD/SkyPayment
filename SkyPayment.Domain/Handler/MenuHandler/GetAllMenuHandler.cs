@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ using SkyPayment.Shared;
 
 namespace SkyPayment.Domain.Handler
 {
-    public class GetAllMenuHandler:IRequestHandler<GetAllMenuQueries, MenuResponseModel>
+    public class GetAllMenuHandler:IRequestHandler<GetAllMenuQueries, IEnumerable<MenuResponseModel>>
     {
         private readonly IMenuService _menuService;
         private readonly IMapper _mapper;
@@ -20,10 +21,10 @@ namespace SkyPayment.Domain.Handler
             _mapper = mapper;
         }
 
-        public  Task<MenuResponseModel> Handle(GetAllMenuQueries request, CancellationToken cancellationToken)
+        public  Task<IEnumerable<MenuResponseModel>> Handle(GetAllMenuQueries request, CancellationToken cancellationToken)
         {
             var allMenus = _menuService.GetAllMenus();
-            return   Task.FromResult<MenuResponseModel>(_mapper.Map<MenuResponseModel>(allMenus));
+            return   Task.FromResult(_mapper.Map<IEnumerable<MenuResponseModel>>(allMenus));
         }
     }
 }
