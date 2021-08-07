@@ -10,6 +10,7 @@ namespace SkyPayment.Core.Entities
         public string Ingredients { get; set; }
         public ProductContent ProductContent { get; set; }
         public string ImageUrl { get; set; }
+        public bool IsActive { get; set; }
       
     }
     public enum ProductContent

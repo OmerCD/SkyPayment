@@ -11,6 +11,7 @@ namespace SkyPayment.Infrastructure.Services
     {
         IEnumerable<Menu> GetAllMenus();
         IEnumerable<Menu> GetAllMenusByRestaurant(string restaurantId, string menuId);
+        IEnumerable<Menu> GetAllMenusByManager(string managerId);
         bool CreateMenu(Menu menu);
         IEnumerable<MenuItem> GetMenuItems(string restaurantId, string menuId, string menuItemId);
         bool UpdateMenu(Menu menu);

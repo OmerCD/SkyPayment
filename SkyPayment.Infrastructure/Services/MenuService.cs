@@ -27,9 +27,14 @@ namespace SkyPayment.Infrastructure.Services
 
         public IEnumerable<Menu> GetAllMenusByRestaurant(string restaurantId, string menuId)
         {
-            var test=  _menu.GetAll(new BsonDocument {{"RestaurantId", restaurantId}, {"Id", menuId}});
-            return test;
+            return _menu.Search(x => x.RestaurantId.FirstOrDefault() == restaurantId && x.Id == menuId);
         }
+
+        public IEnumerable<Menu> GetAllMenusByManager(string managerId)
+        {
+            return _menu.Search(x => x.ManagerId==managerId);
+        }
+
 
         public bool CreateMenu(Menu menu)
         {
@@ -39,7 +44,7 @@ namespace SkyPayment.Infrastructure.Services
         public IEnumerable<MenuItem> GetMenuItems(string restaurantId, string menuId, string menuItemId)
         {
             // var filter = Builders<Menu>.Filter.Eq(x => x.RestaurantId, restaurantId) & Builders<Menu>.Filter.Eq(x=>x.Id, menuId).ToBsonDocument();
-            var menus = _menu.Search(x=>x.RestaurantId==restaurantId && x.Id==menuId);
+            var menus = _menu.Search(x=>x.RestaurantId.First()==restaurantId && x.Id==menuId);
             var menuItems = menus.SelectMany(x=>x.Items).Where(x=>x.Id==menuItemId);
             return menuItems;
         }

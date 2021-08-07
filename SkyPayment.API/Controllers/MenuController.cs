@@ -21,10 +21,17 @@ namespace SkyPayment.API.Controllers
             _mediator = mediator;
         }
         [HttpGet("GetMenus")]
-        public IActionResult GetMenus()
+        public async Task<IActionResult> GetMenus()
         {
             var getAllMenuQueries = new GetAllMenuQueries();
-            var send = _mediator.Send(getAllMenuQueries);
+            var send = await _mediator.Send(getAllMenuQueries);
+            return Ok(send);
+        }
+        [HttpGet("GetMenusByManager/{managerId}")]
+        public async Task<IActionResult> GetMenusByManager(string managerId)
+        {
+            var getMenuByManagerIdQueries = new GetMenuByManagerIdQueries(managerId);
+            var send = await _mediator.Send(getMenuByManagerIdQueries);
             return Ok(send);
         }
         [HttpGet("{restaurantId}/{menuId}")]
@@ -123,7 +130,7 @@ namespace SkyPayment.API.Controllers
         //[Authorize(Roles = "manager")]
         public IActionResult CreateMenu([FromBody] MenuCreateModel menuCreateModel)
         {
-            var menuCreateCommand = new MenuCreateCommand(menuCreateModel.Name, menuCreateModel.Items, menuCreateModel.RestaurantId);
+            var menuCreateCommand = new MenuCreateCommand(menuCreateModel.Name, menuCreateModel.Items, menuCreateModel.RestaurantId,menuCreateModel.ManagerId);
             var send = _mediator.Send(menuCreateCommand);
             return Ok(send);
         }

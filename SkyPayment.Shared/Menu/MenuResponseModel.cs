@@ -9,7 +9,9 @@ namespace SkyPayment.Shared
         public string Name { get; set; }
         public ICollection<MenuItemResponse> Items { get; set; }
         public string ManagementUserId { get; set; }
-        public string RestaurantId { get; set; }
+        public IEnumerable<string> RestaurantId { get; set; }
 
     }
+
+
 }

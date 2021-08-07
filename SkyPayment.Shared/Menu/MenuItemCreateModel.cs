@@ -6,5 +6,6 @@ namespace SkyPayment.Shared
         public double Price { get; set; }
         public string Ingredients { get; set; }
         public ProductContent ProductContent { get; set; }
+        public bool IsActive { get; set; }
     }
 }
