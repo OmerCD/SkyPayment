@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SkyPayment.Domain.Commands;
 using SkyPayment.Domain.Queries.MenuQueries;
 using SkyPayment.Shared;
 
@@ -17,16 +20,27 @@ namespace SkyPayment.API.Controllers
         {
             _mediator = mediator;
         }
-        [HttpGet]
-        public IActionResult GetMenus()
+        [HttpGet("GetMenus")]
+        public async Task<IActionResult> GetMenus()
         {
             var getAllMenuQueries = new GetAllMenuQueries();
-            var send = _mediator.Send(getAllMenuQueries);
+            var send = await _mediator.Send(getAllMenuQueries);
+            return Ok(send);
+        }
+        [HttpGet("GetMenusByManager/{managerId}")]
+        public async Task<IActionResult> GetMenusByManager(string managerId)
+        {
+            var getMenuByManagerIdQueries = new GetMenuByManagerIdQueries(managerId);
+            var send = await _mediator.Send(getMenuByManagerIdQueries);
             return Ok(send);
         }
         [HttpGet("{restaurantId}/{menuId}")]
-        public IActionResult GetMenusTest(string restaurantId,string menuId)
+        public async Task<IActionResult> GetMenusById(string restaurantId,string menuId)
         {
+            var getMenuByRestaurantQueries = new GetMenuByRestaurantQueries(restaurantId,menuId);
+            var menuResponseModels = await _mediator.Send(getMenuByRestaurantQueries);
+            return Ok(menuResponseModels);
+            
             return Ok(new MenuResponseModel()
             {
                 Name = "İçecekler",
@@ -84,9 +98,21 @@ namespace SkyPayment.API.Controllers
                 }
             });
         }
-        [HttpGet("{restaurantId}")]
-        public IActionResult GetMenuList(string restaurantId)
+        
+        [HttpGet("{restaurantId}/{menuId}/{menuItemId}")]
+        public async Task<IActionResult> GetMenuDetail(string restaurantId,string menuId,string menuItemId)
         {
+            var getMenuItemQueries = new GetMenuItemQueries(restaurantId, menuId, menuItemId);
+            var send =await _mediator.Send(getMenuItemQueries);
+
+            return Ok(send);
+        }
+        [HttpGet("{restaurantId}")]
+        public async Task<IActionResult> GetMenuList(string restaurantId)
+        {
+            var getMenuListQueries = new GetMenuListQueries();
+            var send =await  _mediator.Send(getMenuListQueries);
+            return Ok(send);
             return Ok(new List<MenuListResponse>()
             {
                 new MenuListResponse()
@@ -99,6 +125,29 @@ namespace SkyPayment.API.Controllers
                     Id = 2, Name = "Icecekler"
                 }
             });
+        }
+        [HttpPost]
+        //[Authorize(Roles = "manager")]
+        public IActionResult CreateMenu([FromBody] MenuCreateModel menuCreateModel)
+        {
+            var menuCreateCommand = new MenuCreateCommand(menuCreateModel.Name, menuCreateModel.Items, menuCreateModel.RestaurantId,menuCreateModel.ManagerId);
+            var send = _mediator.Send(menuCreateCommand);
+            return Ok(send);
+        }
+        [HttpPut]
+        public async Task<IActionResult> UpdateMenu([FromBody] MenuUpdateModel menuUpdateModel)
+        {
+            var menuUpdateCommand = new MenuUpdateCommand(menuUpdateModel.Name, menuUpdateModel.Items, menuUpdateModel.RestaurantId,
+                menuUpdateModel.Id);
+           await _mediator.Send(menuUpdateCommand);
+            return Ok();
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteMenu(string id)
+        {
+            var menuDeleteCommand = new MenuDeleteCommand(id);
+            var send = await _mediator.Send(menuDeleteCommand);
+            return Ok(send);
         }
     }
 }

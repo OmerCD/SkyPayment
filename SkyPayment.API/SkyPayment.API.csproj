@@ -14,7 +14,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SkyPayment.Domain\SkyPayment.Domain.csproj" />
+      <ProjectReference Include="..\SkyPayment.Domain\SkyPayment.Domain.csproj" />  
+      <ProjectReference Include="..\SkyPayment.Core\SkyPayment.Core.csproj" />
+
     </ItemGroup>
 
     <ItemGroup>

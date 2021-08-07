@@ -9,13 +9,15 @@ namespace SkyPayment.Core.Entities
         public double Price { get; set; }
         public string Ingredients { get; set; }
         public ProductContent ProductContent { get; set; }
+        public string ImageUrl { get; set; }
+        public bool IsActive { get; set; }
       
     }
     public enum ProductContent
     {
-        IsVegan,
-        IsDiabetic,
-        IsGlutenFree,
-        IsVegetarian
+        IsVegan=1,
+        IsDiabetic=2,
+        IsGlutenFree=4,
+        IsVegetarian=8
     }
 }

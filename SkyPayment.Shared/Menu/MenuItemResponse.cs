@@ -4,10 +4,13 @@ namespace SkyPayment.Shared
 {
     public class MenuItemResponse
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
         public string Ingredients { get; set; }
         public ProductContent ProductContent { get; set; }
+        public string ImageUrl { get; set; }
+        public bool IsActive { get; set; }
 
     }
     public enum ProductContent

@@ -1,15 +1,14 @@
 using System.Collections.Generic;
-using MongoORM4NetCore.Interfaces;
+using SkyPayment.Core.Entities;
 
-namespace SkyPayment.Core.Entities
+namespace SkyPayment.Shared.Restaurant
 {
-    public class Restaurant:DbObject
+    public class RestaurantListModel
     {
-   
         public string UserId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
-        public ICollection<Menu> Menus { get; set;}=new List<Menu>();
+        public ICollection<MenuResponseModel> Menus { get; set;}=new List<MenuResponseModel>();
         public string PhoneNumber { get; set; }
         public string FaxNumber { get; set; }
         public string Email { get; set; }
