@@ -28,8 +28,8 @@ namespace SkyPayment.API.Controllers
             var orderCreateCommand = new OrderCreateCommand(createOrderModel.RestaurantId, createOrderModel.TableNumber,
                 menuItems, createOrderModel.Price);
 
-            await _mediator.Send(orderCreateCommand);
-           return Ok( );
+            var send = await _mediator.Send(orderCreateCommand);
+            return Ok(send);
    
         }
         

@@ -7,7 +7,7 @@ namespace SkyPayment.Shared.Restaurant
         public string UserId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
-        public ICollection<MenuResponseModel> Menus { get; set;}=new List<MenuResponseModel>();
+     //   public ICollection<MenuResponseModel> Menus { get; set;}=new List<MenuResponseModel>();
         public string PhoneNumber { get; set; }
         public string FaxNumber { get; set; }
         public string Email { get; set; }
