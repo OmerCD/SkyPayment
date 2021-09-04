@@ -3,14 +3,15 @@ import Login, {LoginInfo} from "../../components/login/Login";
 import {useAuthService} from "../../hooks/auth-service";
 import {useAppDispatch} from "../../app/hooks";
 import {setAuthenticated, setUserInfo} from "../../features/session-info/userInfoSlice";
-import {useHistory} from "react-router-dom";
+import {Redirect, useHistory} from "react-router-dom";
+import './LoginPage.css'
 
 function LoginPage(props:LoginPagePropType) {
     const authenticationService = useAuthService();
     const dispatch = useAppDispatch();
     const history = useHistory();
     if (authenticationService.isAuthenticated()){
-        history.push(`/`);
+        return <Redirect to={'/'}/>
     }
     const handleLogin = async (loginInfo:LoginInfo) => {
         const result = await authenticationService.login(loginInfo.username, loginInfo.password);
@@ -25,7 +26,7 @@ function LoginPage(props:LoginPagePropType) {
         }
     }
     return (
-        <div>
+        <div className={`login-screen`}>
             <Login onLoginSubmit={handleLogin}/>
         </div>
     );

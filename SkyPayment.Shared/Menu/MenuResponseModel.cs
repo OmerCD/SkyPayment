@@ -12,6 +12,4 @@ namespace SkyPayment.Shared
         public IEnumerable<string> RestaurantId { get; set; }
 
     }
-
-
 }

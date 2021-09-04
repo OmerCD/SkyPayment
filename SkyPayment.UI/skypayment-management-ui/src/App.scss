@@ -1,0 +1,10 @@
+@import "colors";
+
+body {
+  background-color: $primary-color;
+  color: $primary-text-color;
+}
+
+* {
+  box-sizing: border-box;
+}

@@ -31,7 +31,9 @@ const userInfoSlice = createSlice({
 });
 
 const selectUserInfo = (state: RootState) => state.userInfo;
-const selectAuthenticationState = (state: RootState) => state.userInfo.isAuthenticated;
+const selectAuthenticationState = (state: RootState) => {
+    return state.userInfo.isAuthenticated;
+};
 
 export const { setUserInfo,setAuthenticated} = userInfoSlice.actions;
 export {userInfoSlice, selectUserInfo, selectAuthenticationState};

@@ -1,5 +1,7 @@
-﻿using Mapster;
+﻿using System;
+using Mapster;
 using MapsterMapper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using SkyPayment.API;
@@ -16,14 +18,16 @@ namespace OhmsND.API.Extensions
             return services;
         }
 
-        public static IServiceCollection AddIdentityServerAuthentication(this IServiceCollection services)
+        public static IServiceCollection AddIdentityServerAuthentication(this IServiceCollection services,
+            IWebHostEnvironment webHostEnvironment)
         {
             services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
                 {
-                    options.Authority = "https://localhost:3682";
+                    options.Authority = "http://192.168.31.220:3682";
                     options.TokenValidationParameters.NameClaimType = "name";
                     options.TokenValidationParameters.RoleClaimType = "role";
+                    options.RequireHttpsMetadata = false;
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateAudience = false

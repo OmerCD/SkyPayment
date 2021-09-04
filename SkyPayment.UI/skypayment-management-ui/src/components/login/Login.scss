@@ -1,0 +1,59 @@
+@import "../../colors";
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 10px;
+  width: 400px;
+  height: fit-content;
+
+  .login-field {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+
+    input {
+      margin-top: 2px;
+      padding: 5px;
+      min-width: 200px;
+      height: 30px;
+      border-radius: 6px;
+      border: 1px solid black;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    button {
+      align-self: flex-end;
+      justify-self: flex-end;
+      min-width: 75px;
+      min-height: 25px;
+      padding: 10px;
+      color: white;
+      background-color: $primary-text-color;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+
+  .login-field-checkbox {
+    font-weight: bold;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    margin-top:10px;
+    font-size: 16px;
+    input {
+      min-height: 25px;
+      min-width: 25px;
+      border: none;
+      margin-right: 5px;
+    }
+  }
+}

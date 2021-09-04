@@ -1,0 +1,29 @@
+@import "../../colors";
+.sidebar-item-container{
+  width: 100%;
+}
+.sidebar-item-field{
+  font-size: 26px;
+  width: 100%;
+  cursor: pointer;
+  text-decoration: none;
+  color: $sidebar-text-color;
+  display: block;
+  * {
+    cursor: pointer;
+  }
+  svg{
+    min-width: 40px;
+  }
+  label{
+    margin-left: 12px;
+    user-select: none;
+  }
+  &:hover{
+    background-color: $sidebar-hover-background-color;
+  }
+  &.active {
+    background-color: $sidebar-active-color;
+    padding-left: 8px;
+  }
+}
