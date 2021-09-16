@@ -1,0 +1,35 @@
+@import "../../constants";
+@import "../../colors";
+
+.navbar-container{
+  height: $navbar-height;
+  width: calc(100% - #{$sidebar-width});
+  position: fixed;
+  background-color: $navbar-background-color;
+  top: 0;
+  left: $sidebar-width;
+  display: flex;
+  align-items: center;
+  transition: all .5s ease 0s;
+  .navbar_sidebar-collapse-button{
+    margin-left: 5px;
+    width: $navbar-height;
+    text-align: center;
+    font-size: 28px;
+    cursor: pointer;
+    height: $navbar-height;
+    line-height: $navbar-height;
+    border-radius: 50%;
+    transition: all .5s ease 0s;
+    &:hover{
+      transform: rotateZ(180deg);
+      transition: all .5s ease 0s;
+      background-color: scale-color($navbar-background-color, $lightness:-10%);
+    }
+  }
+  &.expanded{
+    width: 100%;
+    left: 0;
+    transition: all .5s ease 0s;
+  }
+}

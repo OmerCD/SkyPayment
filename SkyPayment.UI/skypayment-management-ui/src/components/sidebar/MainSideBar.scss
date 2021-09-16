@@ -1,18 +1,31 @@
 @import "../../colors";
+@import "../../constants";
 
-.sidebar-container{
+.sidebar-container {
   height: 100vh;
   left: 0;
   top: 0;
   background-color: $sidebar-color;
   color: $sidebar-text-color;
-  width: 250px;
-
-  .user-info-container{
-    min-height: 120px;
-    border-bottom: 2px solid ;
+  min-width: $sidebar-width;
+  z-index: 5;
+  transition: all .5s ease 0s;
+  transform: translateX(0);
+  overflow-x: hidden;
+  white-space: nowrap;
+  &.collapse {
+    transform: translateX(-$sidebar-width);
+    left:-$sidebar-width;
+    //min-width: 0;
+    //width: 0;
   }
-  .sidebar-items{
+
+  .user-info-container {
+    min-height: 120px;
+    border-bottom: 2px solid;
+  }
+
+  .sidebar-items {
     padding-left: 6px;
     padding-top: 8px;
   }

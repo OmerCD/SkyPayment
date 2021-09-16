@@ -9,7 +9,7 @@ import {faScroll, faUtensils, faUsers, faHome} from '@fortawesome/free-solid-svg
 function MainSideBar(props : MainSideBarPropType) {
     const userInfo = useAppSelector(selectUserInfo);
     return (
-        <div className={`sidebar-container`}>
+        <div className={`sidebar-container ${props.isOpen ? 'collapse' : ''}`}>
             <div className={`user-info-container`}>
                 <label className={`user-info_name`}>{userInfo.userInfo.username}</label>
             </div>
@@ -27,5 +27,5 @@ export default MainSideBar;
 
 
 export interface MainSideBarPropType {
-
-};
+    isOpen:boolean
+}

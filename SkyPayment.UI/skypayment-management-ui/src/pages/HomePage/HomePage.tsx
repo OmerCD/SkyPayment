@@ -1,16 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Route, Switch} from "react-router-dom";
 import MainSideBar from "../../components/sidebar/MainSideBar";
 import Elements from "../../components/elements/Elements";
 import './HomePage.css';
 import MenusPage from "../MenusPage/MenusPage";
+import Navbar from "../../components/navbar/Navbar";
 
 function HomePage(props: HomePagePropType) {
+    const [sidebarOpen, setSidebarOpen] = useState<boolean>(true);
     return (
         <div className={`home-container`}>
-            <MainSideBar/>
+            <Navbar onSideBarStateChange={setSidebarOpen}/>
+            <MainSideBar isOpen={sidebarOpen}/>
             <Switch>
-                <div className={`content`}>
+                <div className={`content ${sidebarOpen ? 'expanded' : ''}`}>
                     <Route exact path={`/`}>
                         {/*<Dashboard/>*/}
                         <Elements/>

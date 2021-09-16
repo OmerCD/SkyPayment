@@ -3,7 +3,7 @@
   width: 100%;
 }
 .sidebar-item-field{
-  font-size: 26px;
+  font-size: 22px;
   width: 100%;
   cursor: pointer;
   text-decoration: none;
@@ -23,7 +23,7 @@
     background-color: $sidebar-hover-background-color;
   }
   &.active {
-    background-color: $sidebar-active-color;
-    padding-left: 8px;
+    background-color: $sidebar-active-background-color;
+    color: $sidebar-active-color;
   }
 }

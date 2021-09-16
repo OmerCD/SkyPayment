@@ -1,9 +1,10 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useMenuService} from "../../hooks/menu-service";
 import {MenuResponseModel} from "../../api-models/menu/MenuResponseModel";
 import './MenusPage.css';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faEdit, faWindowClose} from "@fortawesome/free-solid-svg-icons";
+import SkyTable from "../../components/table/SkyTable";
+import TablePagination from "../../components/table/TablePagination";
+import Fab, {FabColorType} from "../../components/fab/Fab";
 
 interface MenuTableItem extends MenuResponseModel {
     actions: any
@@ -11,50 +12,30 @@ interface MenuTableItem extends MenuResponseModel {
 
 function MenusPage(props: MenusPagePropType) {
     const menuService = useMenuService();
-    const [menus, setMenus] = useState<MenuTableItem[]>([]);
-    const getAndSetMenus = async () => {
-        const data = await menuService.getMenus();
-        setMenus(data.map(x => {
-            return {
-                ...x,
-                actions: (<div>
-                    <button className={"btn-edit"}>
-                        <FontAwesomeIcon icon={faEdit}/>
-                        <span>Düzenle</span>
-                    </button>
-                    <button className={`btn-delete`}>
-                        <FontAwesomeIcon icon={faWindowClose}/>
-                        <span>Sil</span>
-                    </button>
-                </div>)
-            }
-        }))
-    }
+    const [menus, setMenus] = useState<MenuResponseModel[]>([]);
+   
     useEffect(() => {
+        const getAndSetMenus = async () => {
+            const data = await menuService.getMenus();
+            setMenus(data)
+        }
         getAndSetMenus();
     }, []);
-    const mapped = menus.map(item => {
-        return (
-            <tr>
-                <td>{item.name}</td>
-                <td>{item.items.length}</td>
-                <td className={`menus-table_actions`}>{item.actions}</td>
-            </tr>
-        )
-    })
     return (
-        <table className={`menus-table`}>
-            <thead>
-            <tr>
-                <th>İsim</th>
-                <th>Adet</th>
-                <th className={`menus-table_actions`}>Aksiyonlar</th>
-            </tr>
-            </thead>
-            <tbody>
-            {mapped}
-            </tbody>
-        </table>
+        <>
+            <SkyTable headers={[{name:'İsim'}, {name:'Adet'}]} content={menus.map(menu => {
+                return {
+                    id:menu.id,
+                    name: menu.name,
+                    count: menu.items.length
+                }
+            })} hasActions={true}
+                      onEditClick={(id)=> alert("Edit Modal :"+id)}
+                      onDeleteClick={(id)=> alert("Delete Modal :"+id)}
+            />
+            <TablePagination maxPage={50} maxItemPerPage={10} currentPage={2} requestFunction={(page)=>{}}/>
+            <Fab onClick={()=>alert()} type={FabColorType.Success}/>
+        </>
     )
 }
 

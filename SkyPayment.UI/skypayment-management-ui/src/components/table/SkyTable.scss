@@ -1,0 +1,61 @@
+@import "../../colors";
+
+.menus-table-container{
+  min-height: calc(100% - 48px);
+}
+.menus-table {
+  border-collapse: collapse;
+  width: 100%;
+  color: $table-color;
+  tr {
+    background: $table-tr-background-color;
+    max-height: 100px;
+    height: 20px;
+    &:nth-child(even){background-color: $table-tr-background-alternate-color}
+    &:hover{
+      background-color: $table-tr-background-hover-color;
+    }
+  }
+  th {
+    text-align: left;
+    padding: 8px;
+    background-color: $table-header;
+    color: white;
+  }
+  td {
+    max-height: 100px;
+    text-align: left;
+    padding: 8px;
+  }
+  &_actions {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      color: white;
+      border: none;
+      border-radius: 50%;
+      height: 36px;
+      width: 36px;
+      margin: 2px 8px;
+      cursor: pointer;
+      span {
+        padding-left: 8px;
+      }
+      &:focus{
+        outline: none;
+      }
+      &.btn-edit {
+        background: $edit-color;
+        &:hover {
+          background: scale-color($edit-color, $lightness: 20);
+        }
+      }
+      &.btn-delete {
+        background: $delete-color;
+        &:hover {
+          background: scale-color($delete-color, $lightness: 20);
+        }
+      }
+    }
+  }
+}
