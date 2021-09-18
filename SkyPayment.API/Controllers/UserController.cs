@@ -16,7 +16,7 @@ namespace SkyPayment.API.Controllers
         {
             _mediator = mediator;
         }
-
+        [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody] UserCreateModel userCreateModel)
         {
             var userCreateCommand = new UserCreateCommand(userCreateModel.Name, userCreateModel.LastName, userCreateModel.UserName,

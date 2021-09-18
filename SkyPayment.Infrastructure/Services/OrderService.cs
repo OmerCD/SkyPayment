@@ -11,10 +11,10 @@ namespace SkyPayment.Infrastructure.Services
        private readonly IHubContext<OrderHub> _orderHub;
        private readonly IRepository<Order> _orderRepository;
 
-        public OrderService(IRepository<Order> orderRepository)
+        public OrderService(IRepository<Order> orderRepository, IHubContext<OrderHub> orderHub)
         {
             _orderRepository = orderRepository;
-         //   _orderHub = orderHub;
+            _orderHub = orderHub;
         }
 
         public bool CreateOrder(Order order)

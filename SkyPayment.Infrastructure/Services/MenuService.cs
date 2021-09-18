@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Threading.Tasks;
 using MongoDB.Bson;
@@ -43,8 +44,8 @@ namespace SkyPayment.Infrastructure.Services
 
         public IEnumerable<MenuItem> GetMenuItems(string restaurantId, string menuId, string menuItemId)
         {
-            // var filter = Builders<Menu>.Filter.Eq(x => x.RestaurantId, restaurantId) & Builders<Menu>.Filter.Eq(x=>x.Id, menuId).ToBsonDocument();
-            var menus = _menu.Search(x=>x.RestaurantId.First()==restaurantId && x.Id==menuId);
+            
+            var menus = _menu.Search(x=>x.RestaurantId.Contains(restaurantId) && x.Id==menuId);
             var menuItems = menus.SelectMany(x=>x.Items).Where(x=>x.Id==menuItemId);
             return menuItems;
         }
