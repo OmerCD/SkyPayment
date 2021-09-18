@@ -30,7 +30,7 @@ namespace SkyPayment.Infrastructure.Services
 
         public bool DeleteRestaurant(string id)
         {
-            throw new System.NotImplementedException();
+            return _restaurant.Delete(id);
         }
     }
 }

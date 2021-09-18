@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -17,6 +18,8 @@ using SkyPayment.Infrastructure.Extensions;
 using Microsoft.OpenApi.Models;
 using OhmsND.API.Extensions;
 using SkyPayment.Core.Value;
+using SkyPayment.Infrastructure.Hubs;
+using SkyPayment.Infrastructure.Services;
 
 namespace SkyPayment.API
 {
@@ -47,11 +50,13 @@ namespace SkyPayment.API
             services.AddMapster();
             services.Configure<Settings>(Configuration.GetSection("Settings"));
             services.AddMediatR(typeof(Domain.Domain));
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (!env.IsProduction())
             {
                 app.UseDeveloperExceptionPage();
@@ -62,14 +67,18 @@ namespace SkyPayment.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-        
+          
             app.UseCors(x =>
                 x.AllowAnyHeader().WithOrigins("http://localhost:3000", "http://192.168.31.220:3000").AllowAnyMethod()
                     .AllowCredentials());
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers();
+                endpoints.MapHub<OrderHub>("/orderHub");
+            });
+            
+          
         }
     }
 }
