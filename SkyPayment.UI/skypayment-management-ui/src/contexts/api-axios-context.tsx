@@ -1,6 +1,7 @@
 import axios, {AxiosInstance} from "axios";
 import {Context, createContext, useContext} from "react";
 import {useHistory} from "react-router-dom";
+import {useAuthService} from "../hooks/auth-service";
 
 const defaultBaseAxios = axios.create({
     baseURL: process.env.REACT_APP_API_ADDRESS
@@ -24,14 +25,17 @@ export const AxiosContext: Context<ApiServices> = createContext(defaultServices)
 
 export const AxiosProvider = ({children}: any) => {
     const history = useHistory();
+    const authService = useAuthService();
     const token = localStorage.getItem('token');
     if (token) {
         defaultBaseAxios.defaults.headers[`Authorization`] = `Bearer ${token}`;
     }
     defaultBaseAxios.interceptors.response.use(value => value,
         error => {
+            console.log(error)
             if (error.response.status === 401) {
                 localStorage.removeItem('token');
+                authService.logout();
                 history.push('/login');
             }
         })

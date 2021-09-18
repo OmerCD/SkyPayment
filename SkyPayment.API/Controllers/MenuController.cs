@@ -21,6 +21,7 @@ namespace SkyPayment.API.Controllers
             _mediator = mediator;
         }
         [HttpGet("GetMenus")]
+        [Authorize(Roles = "manager")]
         public async Task<IActionResult> GetMenus()
         {
             var getAllMenuQueries = new GetAllMenuQueries();

@@ -8,22 +8,22 @@
   text-align: center;
   line-height: 64px;
   font-size: 32px;
-  right: 3px;
+  right: 5px;
   bottom: 5px;
   color:white;
   user-select: none;
   cursor: pointer;
   &.success{
-    background-color: $fab-success-background-color;
+    background-color: $success-background-color;
   }
   &.warning{
-    background-color: $fab-warning-background-color;
+    background-color: $warning-background-color;
   }
   &.error{
-    background-color: $fab-error-background-color;
+    background-color: $error-background-color;
   }
   &.accent{
-    background-color: $fab-accent-background-color;
+    background-color: $accent-background-color;
   }
   &:hover{
     box-shadow: inset 0px 0px 64px 64px rgba(0, 0, 0, .2);

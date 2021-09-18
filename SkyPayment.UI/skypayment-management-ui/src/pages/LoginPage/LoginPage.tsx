@@ -10,6 +10,7 @@ function LoginPage(props:LoginPagePropType) {
     const authenticationService = useAuthService();
     const dispatch = useAppDispatch();
     const history = useHistory();
+    console.log('in login')
     if (authenticationService.isAuthenticated()){
         return <Redirect to={'/'}/>
     }

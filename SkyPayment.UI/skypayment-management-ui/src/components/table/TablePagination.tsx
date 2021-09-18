@@ -15,8 +15,6 @@ function TablePagination(props: TablePaginationPropTypes) {
         return page - 1;
     }
     useEffect(() => {
-        //page-3, page, page+3, max-3
-        //herhangi bir çakışanı siliyoruz (3 dizi oluşturulup, union ile birleştitilebilir)
         const set = new Set<number>();
         set.add(page)
         for (let i=1; i <= 3; i++){

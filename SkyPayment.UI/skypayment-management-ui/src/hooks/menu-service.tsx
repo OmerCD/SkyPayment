@@ -11,6 +11,13 @@ class MenuService {
 
     async getMenus():Promise<MenuResponseModel[]> {
         const response = await this._baseApi.get('menu/GetMenus');
+        if (response.data){
+            return response.data;
+        }
+        else return [];
+    }
+    async getMenusWithFilter(pageNumber:number, pageSize:number):Promise<MenuResponseModel[]> {
+        const response = await this._baseApi.get('menu/GetMenus');
         return response.data;
     }
 }

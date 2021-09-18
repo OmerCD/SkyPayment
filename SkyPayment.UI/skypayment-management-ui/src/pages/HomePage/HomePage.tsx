@@ -12,8 +12,8 @@ function HomePage(props: HomePagePropType) {
         <div className={`home-container`}>
             <Navbar onSideBarStateChange={setSidebarOpen}/>
             <MainSideBar isOpen={sidebarOpen}/>
-            <Switch>
-                <div className={`content ${sidebarOpen ? 'expanded' : ''}`}>
+            <div className={`content ${sidebarOpen ? 'expanded' : ''}`}>
+                <Switch>
                     <Route exact path={`/`}>
                         {/*<Dashboard/>*/}
                         <Elements/>
@@ -21,8 +21,8 @@ function HomePage(props: HomePagePropType) {
                     <Route path={`/menus`}><MenusPage/></Route>
                     <Route path={`/restaurants`}><h1>Restaurants</h1></Route>
                     <Route path={`/employees`}><h1>Employees</h1></Route>
-                </div>
-            </Switch>
+                </Switch>
+            </div>
         </div>
     );
 }

@@ -12,13 +12,14 @@ interface MenuTableItem extends MenuResponseModel {
 
 function MenusPage(props: MenusPagePropType) {
     const menuService = useMenuService();
+    const [pageSize, setPageSize] = useState<number>(20);
     const [menus, setMenus] = useState<MenuResponseModel[]>([]);
-   
+    const getAndSetMenus = async () => {
+        const data = await menuService.getMenus();
+        setMenus(data)
+    }
     useEffect(() => {
-        const getAndSetMenus = async () => {
-            const data = await menuService.getMenus();
-            setMenus(data)
-        }
+
         getAndSetMenus();
     }, []);
     return (
@@ -33,7 +34,7 @@ function MenusPage(props: MenusPagePropType) {
                       onEditClick={(id)=> alert("Edit Modal :"+id)}
                       onDeleteClick={(id)=> alert("Delete Modal :"+id)}
             />
-            <TablePagination maxPage={50} maxItemPerPage={10} currentPage={2} requestFunction={(page)=>{}}/>
+            <TablePagination maxPage={menus.length / pageSize < 1 ? 1 : Math.ceil(menus.length / pageSize)} maxItemPerPage={pageSize} currentPage={1} requestFunction={(page)=>{}}/>
             <Fab onClick={()=>alert()} type={FabColorType.Success}/>
         </>
     )

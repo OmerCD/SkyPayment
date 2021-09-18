@@ -10,7 +10,7 @@ function SkyTable(props: SkyTablePropTypes) {
             return {
                 ...x,
                 actions: (
-                    <div className={`menus-table_actions`}>
+                    <div key={x.id} className={`menus-table_actions`}>
                         <button className={"btn-edit"} onClick={() => props.onEditClick?.(x.id)}>
                             <FontAwesomeIcon icon={faEdit}/>
                         </button>
@@ -29,10 +29,9 @@ function SkyTable(props: SkyTablePropTypes) {
             }
         }).filter(x => x !== undefined && x);
         return <tr key={obj.id}>
-            {values.map(value => <td>{value}</td>)}
+            {values.map((value, index) => <td key={index}>{value}</td>)}
         </tr>
     })
-    console.log(mapped);
     return (
         <div className={`menus-table-container`}>
         <table className={`menus-table`}>
@@ -40,7 +39,7 @@ function SkyTable(props: SkyTablePropTypes) {
             <tr>
                 {props.headers.map(header => {
                     return (
-                        <th>{header.name}</th>
+                        <th key={header.name}>{header.name}</th>
                     )
                 })}
                 {props.hasActions ? <th className={`menus-table_actions`}>Aksiyonlar</th> : <></>}

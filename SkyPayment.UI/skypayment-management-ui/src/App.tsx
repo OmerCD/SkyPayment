@@ -9,19 +9,20 @@ import HomePage from "./pages/HomePage/HomePage";
 function App() {
     const isAuthenticated = useSelector(selectAuthenticationState);
     return (
-        <div>
+        <>
             <Switch>
-                {/*<Route exact path={'/'}>*/}
-                {/*    {isAuthenticated ? <HomePage/> : <Redirect to={`/login`}/>  }*/}
-                {/*</Route>*/}
-                <Route path={'/'}>
-                    <HomePage/>
+                <Route exact path={'/'}>
+                    {isAuthenticated ? <HomePage/> : <Redirect to={`/login`}/>}
                 </Route>
                 <Route exact path={`/login`}>
                     <LoginPage/>
                 </Route>
+                <Route path={'/'}>
+                    <HomePage/>
+                </Route>
+
             </Switch>
-        </div>
+        </>
     );
 }
 
